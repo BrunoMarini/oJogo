@@ -1,6 +1,6 @@
 const Apostas = require("./Apostas.js");
 const Cartas = require("./Cartas.js");
-const chancesWinWheel chances = [
+const chancesWinWheel = [
 			{“premio”:    0, “chance”: 5},
 			{“premio”: 1000, “chance”: 5},
 			{“premio”:  500, “chance”: 5},
@@ -25,7 +25,6 @@ const chancesWinWheel chances = [
 			{“premio”:  200, “chance”: 5},
 			{“premio”:  100, “chance”: 5},
 			{“premio”:   50, “chance”: 5},
-			
 		];
 		
 class Jogo {
