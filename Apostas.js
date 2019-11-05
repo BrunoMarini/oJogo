@@ -40,7 +40,7 @@ class Aposta {
 
 class ApostaRoleta extends Aposta {
     constructor(params) {
-        super(params["valor"], params["jogadorPtr"]); //, params["condição"], params["multiplicador"]
+        super(params["valor"], params["jogadorPtr"]);
         this._condição = params["condição"];
         this._payout = params["valor"] * params["multiplicador"];
     }
@@ -91,14 +91,16 @@ function ApostaRoletaAuto(params) {
     for (var k in params) { autopar[k] = params[k]; }
     return new ApostaRoleta(autopar);
 }
-exports.RoletaAuto = ApostaRoletaAuto;
 
 class ApostaBlackjack extends Aposta {
-    constructor(valor, jogador) {
-        super(valor, jogador, undefined, 2);
+    constructor(params) {
+        super(params["valor"], params["jogadorPtr"]);
+        this._valor = params["valor"];
+        this._multi = 2;
+        this.__params__ = params;
     }
 
-    split() { return new ApostaBlackjack(this._valor, this._jogador); }
+    split() { this._jogador.apostar(this.__params__) }//return new ApostaBlackjack(this._valor, this._jogador); }
 
     double() { this._multi = 4; }
 
@@ -122,6 +124,7 @@ class ApostaBlackjack extends Aposta {
     }
 }
 
-exports.Roleta = ApostaRoleta;
+//exports.Roleta = ApostaRoleta;
+exports.RoletaAuto = ApostaRoletaAuto;
 exports.RRoleta = ResultadoRoleta;
 exports.Blackjack = ApostaBlackjack;
