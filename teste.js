@@ -56,8 +56,8 @@ const chances = [
     
     {"premio":   50, "chance": 1},
     {"premio":  100, "chance": 1},
-    {"premio":  200, "chance": 5},
     {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
     {"premio":  400, "chance": 5},
     {"premio":  100, "chance": 5},
     {"premio":  200, "chance": 5},

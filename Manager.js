@@ -5,7 +5,8 @@ const Apostas = require("./Apostas.js");
 class Manager {
     constructor() {
         this._mesas = {
-            "roleta": [new Jogos.Roleta()]
+            "roleta": [new Jogos.Roleta()],
+			"winWheel": [new Jogos.WinWheel()]
         }
         this._jogadores = {}
     }

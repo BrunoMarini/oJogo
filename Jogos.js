@@ -1,30 +1,30 @@
 const Apostas = require("./Apostas.js");
 const Cartas = require("./Cartas.js");
 const chancesWinWheel = [
-			{“premio”:    0, “chance”: 5},
-			{“premio”: 1000, “chance”: 5},
-			{“premio”:  500, “chance”: 5},
-			{“premio”:  400, “chance”: 5},
-			{“premio”:  300, “chance”: 5},
-			{“premio”:  200, “chance”: 5},
-			{“premio”:  100, “chance”: 5},
-			{“premio”:  400, “chance”: 5},
-			{“premio”:  300, “chance”: 5},
-			{“premio”:  200, “chance”: 5},
-			{“premio”:  100, “chance”: 1},
-			{“premio”:   50, “chance”: 1},
-			{“premio”:    0, “chance”: 1},
-			{“premio”:  600, “chance”: 1},
-			{“premio”:  500, “chance”: 1},
-			{“premio”:  400, “chance”: 5},
-			{“premio”:  300, “chance”: 5},
-			{“premio”:  200, “chance”: 5},
-			{“premio”:  100, “chance”: 5},
-			{“premio”:  400, “chance”: 5},
-			{“premio”:  300, “chance”: 5},
-			{“premio”:  200, “chance”: 5},
-			{“premio”:  100, “chance”: 5},
-			{“premio”:   50, “chance”: 5},
+			{"premio":    0, "chance": 5},
+			{"premio": 1000, "chance": 5},
+			{"premio":  500, "chance": 5},
+			{"premio":  400, "chance": 5},
+			{"premio":  300, "chance": 5},
+			{"premio":  200, "chance": 5},
+			{"premio":  100, "chance": 5},
+			{"premio":  400, "chance": 5},
+			{"premio":  300, "chance": 5},
+			{"premio":  200, "chance": 5},
+			{"premio":  100, "chance": 1},
+			{"premio":   50, "chance": 1},
+			{"premio":    0, "chance": 1},
+			{"premio":  600, "chance": 1},
+			{"premio":  500, "chance": 1},
+			{"premio":  400, "chance": 5},
+			{"premio":  300, "chance": 5},
+			{"premio":  200, "chance": 5},
+			{"premio":  100, "chance": 5},
+			{"premio":  400, "chance": 5},
+			{"premio":  300, "chance": 5},
+			{"premio":  200, "chance": 5},
+			{"premio":  100, "chance": 5},
+			{"premio":   50, "chance": 5},
 		];
 		
 class Jogo {
@@ -110,12 +110,48 @@ class Blackjack extends Jogo {
 
 // ================================= BEGIN WIN WHEEL =================================
 class WinWheel extends Jogo {
+	
 	constructor(){
-		
-		
-
+	}
+	
+	sortear(){
 		
 	}
 	
+	calcularRodada(){
+		let result = 0/360;
+		let orig = result * 360;
+		let pos = -1;
+		
+		while (result > 0) 
+		{ 
+			result -= chances[++pos]['chance'] / 100.0; 
+		}
+		console.log("Result = " + orig + "; pos = " + pos + "; valor = " + chances[pos]['premio']);
+		return ["posicao": pos, "recompensa": chances[pos]['premio']];	
+	}
 }
 // =================================  END WIN WHEEL  =================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

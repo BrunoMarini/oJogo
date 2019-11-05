@@ -1,3 +1,7 @@
+const precosTabelados = [
+			{"jogo": winWheel, "valor": 500}
+        ]
+
 class ResultadoRoleta {
     constructor(numero) {
         this._numero = numero
