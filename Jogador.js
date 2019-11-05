@@ -1,6 +1,7 @@
 const Apostas = require("./Apostas.js");
 const red = {
-    "roleta": Apostas.Roleta
+    "roleta": Apostas.Roleta,
+    "blackjack": Apostas.Blackjack
 }
 
 class Jogador {

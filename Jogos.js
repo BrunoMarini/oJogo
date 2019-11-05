@@ -1,4 +1,5 @@
 const Apostas = require("./Apostas.js");
+const Cartas = require("./Cartas.js");
 
 class Jogo {
     constructor() {
@@ -31,6 +32,7 @@ class Jogo {
     }
 }
 
+// ================================= BEGIN ROLETA =================================
 class Roleta extends Jogo {
     constructor() {
         super()
@@ -51,3 +53,31 @@ class Roleta extends Jogo {
 }
 
 exports.Roleta = Roleta;
+// =================================  END ROLETA  =================================
+
+// ================================= BEGIN BLACKJACK =================================
+class Blackjack extends Jogo {
+    constructor() {
+        super()
+        this._mãos = {};
+        this._baralho = new Cartas.Baralho();
+        for (var k in this._jogadores) this._mãos[this._jogadores[k]] = [];
+    }
+
+    puxarCarta() {
+        return this._baralho.removerCarta();
+    }
+
+    iniciarRodada() {
+        // Coletar apostas
+
+        // Dar duas cartas para cada (inclusive crupie)
+
+        // Checar blackjacks
+
+        // Para cada jogador, adicionar cartas enquanto quiser
+
+        // Puxar cartas para o crupie ate que soma > 16
+    }
+}
+// =================================  END BLACKJACK  =================================
