@@ -132,3 +132,4 @@ class ApostaBlackjack extends Aposta {
 exports.RoletaAuto = ApostaRoletaAuto;
 exports.RRoleta = ResultadoRoleta;
 exports.Blackjack = ApostaBlackjack;
+exports.PrecosTabelados = precosTabelados;
