@@ -1,3 +1,4 @@
+
 function Winwheel(options, drawWheel)
 {
     defaultOptions = {
@@ -1813,7 +1814,10 @@ Winwheel.prototype.computeAnimation = function()
 
             if (this.animation.stopAngle == null) {
                 // If the stop angle has not been specified then pick random between 0 and 359.
-                this.animation._stopAngle = Math.floor((Math.random() * 359));
+                //24 casas 0 - 23
+                var casaParada = 2;
+                var stopAngle = 7.5 + 15 * casaParada;
+                this.animation._stopAngle = Math.floor(stopAngle);  //CHANGE
             } else {
                 // We need to set the internal to 360 minus what the user entered because the wheel spins past 0 without
                 // this it would indicate the prize on the opposite side of the wheel. We aslo need to take in to account
