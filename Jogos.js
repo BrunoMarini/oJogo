@@ -106,6 +106,7 @@ class Blackjack extends Jogo {
         // Puxar cartas para o crupie ate que soma > 16
     }
 }
+// =================================  END BLACKJACK  =================================
 
 // ================================= BEGIN WIN WHEEL =================================
 class WinWheel extends Jogo {
@@ -118,4 +119,3 @@ class WinWheel extends Jogo {
 	
 }
 // =================================  END WIN WHEEL  =================================
-
