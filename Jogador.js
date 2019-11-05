@@ -1,6 +1,6 @@
 const Apostas = require("./Apostas.js");
 const red = {
-    "roleta": Apostas.Roleta,
+    "roleta": Apostas.RoletaAuto,
     "blackjack": Apostas.Blackjack
 }
 
@@ -24,10 +24,11 @@ class Jogador {
         return this._dinheiro;
     }
 
-    apostar(valor, jogo, condição, multi) {
-        if (this.rmDinheiro(valor) == undefined) return undefined;
-        console.log("[Jogador] Gerando aposta no valor de " + valor + " em " + jogo);
-        return new red[jogo](valor, this, condição, multi);
+    apostar(params) {
+        if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
+        console.log("[Jogador] Gerando aposta no valor de " + params["valor"] + " em " + params["jogo"] + (params["tipo"] != undefined ? (" (tipo " + params["tipo"] + ")") : ""));
+        params["jogadorPtr"] = this;
+        return red[params["jogo"]](params);
     }
 }
 

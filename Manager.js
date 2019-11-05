@@ -22,8 +22,8 @@ class Manager {
         this.acessarMesa("roleta", 0).addJogador(jog2);
     }
 
-    gerarAposta(jogo, mesa, jogador, valor, condição, multi) {
-        this.acessarMesa(jogo, mesa).addAposta(this.acessarMesa(jogo, mesa).getJogador(jogador).apostar(valor, jogo, condição, multi));
+    gerarAposta(params) {//jogo, mesa, jogador, valor, condição, multi
+        this.acessarMesa(params["jogo"], params["mesa"]).addAposta(this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params));
     }
 }
 
