@@ -89,7 +89,6 @@ app.post('/tryAposta', function(req, res) {
     var authToken = roomData[2];
     var jogo = roomData[0];
 
-    console.log("[Server] valor = " + req.body.valor);
     // Gerar template de aposta
     var aposta = {
         "jogo":jogo,
@@ -103,13 +102,23 @@ app.post('/tryAposta', function(req, res) {
     if (req.body.tipo != undefined) aposta["tipo"] = req.body.tipo;
     if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
 
-    console.log("[Server] aposta template = " + aposta)
+    console.log("[Server] aposta template = ", aposta)
     var ok = M.gerarAposta(aposta);
     if (ok) {
         res.send("Aposta efetuada!");
     } else {
         res.send("A aposta não pode ser feita, cheque seu saldo...");
     }
+});
+
+// Requisições de saldo
+app.post('/reqSaldo', function(req, res) {
+    console.log("[Server] Novo pedido de saldo");
+    // Parsear dados do request
+    var cookies = parseCookies(req);
+    var usuario = cookies['usuario'];
+
+    res.send( "" + M.obterSaldo(usuario) );
 });
 
 // Listen on port

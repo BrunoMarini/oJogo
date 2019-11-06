@@ -9,9 +9,21 @@ class Manager {
 			"winWheel": [new Jogos.WinWheel()]
         }
         this._jogadores = {}
+        this._objetos = {}
     }
 
-    acrescentarJogador(jogador) { if (!(jogador.UUID in this._jogadores)) this._jogadores[jogador.UUID] = jogador; }
+    acrescentarObjeto(objeto) {
+        var token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        while (token in this._objetos) token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        this._objetos[token] = objeto;
+    }
+
+    acrescentarJogador(jogador) { 
+        if (!(jogador.UUID in this._jogadores)) {
+            this._jogadores[jogador.UUID] = jogador; 
+            this.acrescentarObjeto(jogador);
+        }
+    }
     logarJogador(usuario, senha) {
         if (usuario in this._jogadores) return this._jogadores[usuario].login(senha);
         return false;
@@ -46,6 +58,10 @@ class Manager {
         if (jogadorPtr.salaAtiva != undefined) jogadorPtr.salaAtiva.rmJogador(jogador);
         // Retornar o token autenticador gerado pela nova sala (servidor salvará como cookie no cliente)
         return this.acessarMesa(jogo, mesa).addJogador(jogadorPtr);
+    }
+
+    obterSaldo(jogador) {
+        if (jogador in this._jogadores) return this._jogadores[jogador].dinheiro;
     }
 }
 

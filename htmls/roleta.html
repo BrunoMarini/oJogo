@@ -3,8 +3,9 @@
     <head>
         <script src="roletaDOM.js"></script>
     </head>
-    <body>
+    <body onload="onload()">
         <title>Roletalha</title>
+        <div id="saldoDisplay">Saldo: </div>
         <form onsubmit='enviarAposta()' action="javascript:void(0);">
             <div>
                 <b>Valor: </b><input type="text" name="valor" id="fieldValor" required></br>
