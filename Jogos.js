@@ -1,67 +1,106 @@
 const Apostas = require("./Apostas.js");
 const Cartas = require("./Cartas.js");
 const chancesWinWheel = [
-			{"premio":    0, "chance": 5},
-			{"premio": 1000, "chance": 5},
-			{"premio":  500, "chance": 5},
-			{"premio":  400, "chance": 5},
-			{"premio":  300, "chance": 5},
-			{"premio":  200, "chance": 5},
-			{"premio":  100, "chance": 5},
-			{"premio":  400, "chance": 5},
-			{"premio":  300, "chance": 5},
-			{"premio":  200, "chance": 5},
-			{"premio":  100, "chance": 1},
-			{"premio":   50, "chance": 1},
-			{"premio":    0, "chance": 1},
-			{"premio":  600, "chance": 1},
-			{"premio":  500, "chance": 1},
-			{"premio":  400, "chance": 5},
-			{"premio":  300, "chance": 5},
-			{"premio":  200, "chance": 5},
-			{"premio":  100, "chance": 5},
-			{"premio":  400, "chance": 5},
-			{"premio":  300, "chance": 5},
-			{"premio":  200, "chance": 5},
-			{"premio":  100, "chance": 5},
-			{"premio":   50, "chance": 5},
-		];
+    {"premio":    0, "chance": 5},
+    {"premio": 1000, "chance": 5},
+    {"premio":  500, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 1},
+    {"premio":   50, "chance": 1},
+    {"premio":    0, "chance": 1},
+    {"premio":  600, "chance": 1},
+    {"premio":  500, "chance": 1},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":   50, "chance": 5},
+]; // Rever chances
 		
 class Jogo {
-    constructor() {
+    constructor(nome) {
         this._jogadores = {};
-        this._apostas = []
-    }
-    addJogador(jogador) {
-        this._jogadores[jogador.UUID] = jogador;
-    }
-    getJogador(UUID) {
-        return this._jogadores[UUID];
+        this._apostas = [];
+        this._timer = undefined;
+        this._timerTime = 10000;
+        this._nome = nome;
+        this._UUID = this.genToken();
     }
 
+    get UUID() { return this._UUID; }
+
+    genToken() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+
+    addJogador(jogadorPtr) {
+        console.log("[Jogos] Jogador " + jogadorPtr.nome + " entrando em " + this._nome);
+        jogadorPtr.salaAtiva = this;
+        var auth = this.genToken();
+        jogadorPtr.authToken = auth
+        this._jogadores[jogadorPtr.UUID] = jogadorPtr;
+        return jogadorPtr.authToken;
+    }
+    getJogador(UUID) { return this._jogadores[UUID]; }
+
     addAposta(aposta) {
-        this._apostas.push(aposta)
+        if (aposta != undefined && aposta["jogador"].UUID in this._jogadores) {
+            this._apostas.push(aposta);
+            // Iniciar contagem para calcular a rodada (pode ser modificado em subclasses)
+            if (this._timer == undefined) {
+                console.log("[Jogos] Iniciando contagem regressiva de " + this._timerTime + "ms para processar " + this._nome + " - " + this._UUID);
+                this._timer = setTimeout( this.calcularRodada.bind(this), this._timerTime );
+            }
+        }
+        // Retornar valor para verificação
+        return aposta;
     }
     aplicarTodasApostas(resultado) {
+        var resultados = [];
         for (var i in this._apostas) {
-            this._apostas[i].aplicarGanhos(resultado);
+            //console.log("[Jogos] Processando aposta", this._apostas[i])
+            resultados.push({"aposta": this._apostas[i], "resultado": this._apostas[i].aplicarGanhos(resultado)});
         }
+        return resultados;
     }
     limparApostas() {
         console.log("[Roleta] Limpando apostas");
-        this._apostas = []
+        this._apostas = [];
+        this._timer = undefined;
     }
     logarApostas() {
         for (var i in this._apostas) {
             console.log(this._apostas[i]);
         }
     }
+    rmJogador(jogador) {
+        this._jogadores[jogador].salaAtiva = undefined;
+        this._jogadores[jogador].authToken = undefined;
+        // Remover o jogador da sala
+        delete(this._jogadores[jogador]);
+        // Limpar apostas ativas do jogador
+        for (var i in this._apostas) { if (this._apostas[i].jogador.UUID == jogador.UUID) delete(this._apostas[i]); } 
+    }
+
+    calcularRodada() { 
+        // Abstract
+    }
 }
 
 // ================================= BEGIN ROLETA =================================
 class Roleta extends Jogo {
     constructor() {
-        super()
+        super("roleta")
     }
 
     girarRoleta() {
@@ -73,7 +112,8 @@ class Roleta extends Jogo {
         console.log("[Roleta] Apostas encerradas...")
         var res = this.girarRoleta();
         console.log("[Roleta] Número " + res.numero + " (cor: " + res.cor + ", alto: " + res.isAlto + ")");
-        this.aplicarTodasApostas(res);
+        var resultados = this.aplicarTodasApostas(res);
+        // Enviar resultados para os donos
         this.limparApostas();
     }
 }
@@ -84,7 +124,7 @@ exports.Roleta = Roleta;
 // ================================= BEGIN BLACKJACK =================================
 class Blackjack extends Jogo {
     constructor() {
-        super()
+        super("blackjack")
         this._mãos = {};
         this._baralho = new Cartas.Baralho();
         for (var k in this._jogadores) this._mãos[this._jogadores[k]] = [];
@@ -111,47 +151,31 @@ class Blackjack extends Jogo {
 // ================================= BEGIN WIN WHEEL =================================
 class WinWheel extends Jogo {
 	
-	constructor(){
-	}
+	constructor() {
+        super("winWheel");
+    }
+    
+    addAposta(aposta) {
+        this._apostas.push(aposta);
+        // Calcular resultado imediatamente
+        this.calcularRodada();
+    }
 	
 	sortear(){
+        let result = Math.random();
+        if (result == 0) return 0;
+		let pos = -1;
 		
+		while (result > 0) { result -= chances[++pos]['chance'] / 100.0; }
+        return pos;
 	}
 	
 	calcularRodada(){
-		let result = 0/360;
-		let orig = result * 360;
-		let pos = -1;
-		
-		while (result > 0) 
-		{ 
-			result -= chances[++pos]['chance'] / 100.0; 
-		}
-		console.log("Result = " + orig + "; pos = " + pos + "; valor = " + chances[pos]['premio']);
-		return ["posicao": pos, "recompensa": chances[pos]['premio']];	
+        let pos = this.sortear();
+		console.log("Result = " + pos + "; valor = " + chances[pos]['premio']);
+		return {"posicao": pos, "recompensa": chances[pos]['premio']};	
 	}
 }
+
+exports.WinWheel = WinWheel;
 // =================================  END WIN WHEEL  =================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

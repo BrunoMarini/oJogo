@@ -1,6 +1,8 @@
-const precosTabelados = [
-			{"jogo": winWheel, "valor": 500}
-        ]
+const precosTabelados = {
+    "winWheel": 500
+}
+    //{"jogo": winWheel, "valor": 500}
+
 
 class ResultadoRoleta {
     constructor(numero) {
@@ -40,8 +42,11 @@ class Aposta {
         this._jogador = jogador;
         console.log("[Aposta] Construída!");
     }
+    get valor() { return this._valor; }
+    get jogador() { return this._jogador; }
 }
 
+// ================================ APOSTA ROLETA ================================
 class ApostaRoleta extends Aposta {
     constructor(params) {
         super(params["valor"], params["jogadorPtr"]);
@@ -71,7 +76,9 @@ class ApostaRoleta extends Aposta {
         if (this.verificarAposta(resultado)) {
             console.log("[Aposta] Aplicando + " + this._payout + " para " + this._jogador.nome)
             this._jogador.addDinheiro( this._payout );
+            return {"premio": this._payout, "justificativa": "Acertou a aposta!"};
         }
+        return {"premio": 0, "justificativa": "Errou a aposta..."};
     }
 }
 
@@ -96,6 +103,7 @@ function ApostaRoletaAuto(params) {
     return new ApostaRoleta(autopar);
 }
 
+// ================================ APOSTA BLACKJACK ================================
 class ApostaBlackjack extends Aposta {
     constructor(params) {
         super(params["valor"], params["jogadorPtr"]);
@@ -109,21 +117,21 @@ class ApostaBlackjack extends Aposta {
     double() { this._multi = 4; }
 
     aplicarGanhos(resultado) {
-        if (resultado['jogador'] > 21) return; // Estourou
+        if (resultado['jogador'] > 21) return {"premio": 0, "justificativa": "Estourou a mão..."}; // Estourou
         if (resultado['jogador'] == 21 && resultado['ncartas_jogador'] == 2 && !(resultado['crupie'] == 21 && resultado['ncartas_crupie'] == 2)) { // Blackjack
             console.log("[Aposta] Aplicando + " + (this._valor * 4) + " para " + this._jogador.nome)
             this._jogador.addDinheiro( this._valor * 4 );
-            return;
+            return {"premio": this._valor * 4, "justificativa": "Blackjack!"};
         }
         if (resultado['jogador'] == resultado['crupie']) { // Devolução
             console.log("[Aposta] Aplicando + " + (this._valor * 1) + " para " + this._jogador.nome)
             this._jogador.addDinheiro( this._valor * 1 );
-            return;
+            return {"premio": this._valor, "justificativa": "Empatou com a mesa"};
         }
         if (resultado['jogador'] > resultado['crupie']) { // Venceu
             console.log("[Aposta] Aplicando + " + (this._valor * 2) + " para " + this._jogador.nome)
             this._jogador.addDinheiro( this._valor * 2 );
-            return;
+            return {"premio": this._valor * 2, "justificativa": "Ganhou!"};
         }
     }
 }
