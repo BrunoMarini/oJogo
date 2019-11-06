@@ -5,15 +5,19 @@
         <script type="text/javascript" src="Winwheel.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     </head>
-    <body>
+    <body onload="onload()">
         <div align="center">  
             <table cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td>
-                    <div class="power_controls">
+                    <div class="power_controls" align="center">
                         <br />
                         <br />
+                        <h1>Aposta 10 moedas</h1>
                         <br />
+                        <label id="saldoJogador"></label>
+                        <br>
+                        <br>
                         <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
                         <br /><br />
                         &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
@@ -92,11 +96,34 @@
             let wheelPower    = 3;
             let wheelSpinning = false;
 
+            let saldo;
+
+            function onload(){
+                requestSaldo();
+                requestPrecoAposta();
+            }
+
+            function requestSaldo() {
+                var req = new XMLHttpRequest();
+                req.open('POST', "/reqSaldo", true);
+                req.setRequestHeader('Content-Type', 'plain/text;charset=UTF-8');
+                req.send();
+
+                req.onreadystatechange = function() {
+                    if (req.readyState == 4 && req.status == 200){
+                        saldo = req.responseText;
+                        document.getElementById("saldoJogador").innerHTML = "Saldo: " + saldo;
+                    }
+                }
+            }
+
+
             // -------------------------------------------------------
             // Click handler for spin button.
             // -------------------------------------------------------
             function startSpin()
             {
+                  
                 document.getElementById('spin_button').src       = "spin_off.png";
 
                 // Ensure that spinning can't be clicked again while already running.
@@ -119,6 +146,7 @@
                     wheelSpinning = true;
                 }
             }
+ 
 
             // -------------------------------------------------------
             // Function for reset button.

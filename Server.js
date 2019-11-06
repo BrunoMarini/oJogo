@@ -160,6 +160,12 @@ app.post('/replyAposta', function(req, res) {
 
 // Require peão da casa propria
 
+/* Inicio Roleta */
+app.all('/roletaDOM.js', function(req, res){
+    res.sendFile(fetchFile("/scripts/roletaDOM.js"));
+});
+/* Fim Roleta */
+
 /* Inicio Manager */
 app.all('/Jogador.js', function(req, res){
     res.sendFile(fetchFile("/scripts/Jogador.js"));
