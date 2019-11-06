@@ -5,11 +5,12 @@ const Apostas = require("./Apostas.js");
 class Manager {
     constructor() {
         this._mesas = {
-            "roleta": [new Jogos.Roleta()],
-			"winWheel": [new Jogos.WinWheel()]
+            "roleta": [new Jogos.Roleta(this)],
+			"winWheel": [new Jogos.WinWheel(this)]
         }
         this._jogadores = {}
         this._objetos = {}
+        this._waitlist = []
     }
 
     acrescentarObjeto(objeto) {
@@ -48,7 +49,9 @@ class Manager {
 
     gerarAposta(params) {
         console.log("[Manager] Gerando aposta para " + params["jogador"] + " em " + params["jogo"] + ", sala " + params["mesa"] + " (valor = " + params["valor"] + ", token = " + params["authToken"] + ")");
-        var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta(this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params));
+        var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta(
+            this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params)
+        );
         return (r == undefined ? false : true);
     }
 
@@ -62,6 +65,51 @@ class Manager {
 
     obterSaldo(jogador) {
         if (jogador in this._jogadores) return this._jogadores[jogador].dinheiro;
+    }
+
+    addWaitlist(jogador, jogo, mesa, response) {
+        console.log("Adding, response", response);
+        var obj = {"jogador":jogador, "jogo":jogo, "mesa":mesa, "response":response, "responseElements":[], "processed":false}
+        // for (var i in this._waitlist) {
+        //     if (obj)
+        // }
+        //this._waitlist[Object.keys(this._waitlist).length] = 
+        this._waitlist.push(obj);
+    }
+
+    processDone(resultList) {
+        console.log("[Manager] Processando resultados", resultList);
+        for (var kr in resultList) {
+            for (var kw in this._waitlist) {
+                if ( resultList[kr]["aposta"].jogador.nome == this._waitlist[kw]["jogador"] ) {
+                    console.log("[Manager] Found matching request for " + this._waitlist[kw]["jogador"]);
+                    this._waitlist[kw]["processed"] = true;
+                    this._waitlist[kw]["responseElements"].push(resultList[kr])
+                }
+            }
+        }
+        // After all results are processed, check which ones to reply
+        for (var kw in this._waitlist) {
+            if ( this._waitlist[kw]["processed"] ) {
+                var response = this._waitlist[kw]["response"];
+                var elements = this._waitlist[kw]["responseElements"];
+                var data = [];
+                for (var ke in elements) {
+                    data.push({
+                        "apostaOriginal" : elements[ke]["aposta"].valor,
+                        "premio"         : elements[ke]["resultado"]["premio"],
+                        "justificativa"  : elements[ke]["resultado"]["justificativa"]
+                    });
+                } 
+                response.send(JSON.stringify(data));
+            }
+        }
+        // After all results are replied, check which ones to delete
+        var newwaitlist = [];
+        for (var kw in this._waitlist) {
+            if ( !this._waitlist[kw]["processed"] ) { newwaitlist.push(this._waitlist[kw]) }
+        }
+        this._waitlist = newwaitlist;
     }
 }
 

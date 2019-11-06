@@ -121,6 +121,21 @@ app.post('/reqSaldo', function(req, res) {
     res.send( "" + M.obterSaldo(usuario) );
 });
 
+// Requisições de resultado de apostas
+app.post('/replyAposta', function(req, res) {
+    console.log("[Server] Novo pedido de resultados adiantado");
+
+    // Parsear dados do request
+    var cookies = parseCookies(req);
+    var usuario = cookies['usuario'];
+    var roomData = cookies['roomData'].split("|");
+    var sala = roomData[1];
+    var authToken = roomData[2];
+    var jogo = roomData[0];
+
+    M.addWaitlist(usuario, jogo, sala, res);
+});
+
 // Listen on port
 const port = 8080;
 app.listen(port);

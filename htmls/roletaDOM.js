@@ -1,4 +1,4 @@
-let aguardandoRespostas = true;
+let aguardandoRespostas = false;
 let reqRespostas = undefined;
 
 function onload() {
@@ -41,7 +41,7 @@ function enviarAposta() {
     // Iniciar uma espera assincrona pelo resultado da aposta
     if (!aguardandoRespostas) {
         reqRespostas = new XMLHttpRequest();
-        reqRespostas.open('GET','/replyAposta',true); // set this to POST if you would like
+        reqRespostas.open('POST','/replyAposta',true); // set this to POST if you would like
         reqRespostas.addEventListener('load',onLoadReply);
         reqRespostas.addEventListener('error',onErrorReply);
         reqRespostas.send();
@@ -51,9 +51,13 @@ function enviarAposta() {
 
 function onLoadReply() {
     var response = this.responseText;
+    alert("Servidor respondeu: " + response);
     var parsedResponse = JSON.parse(response);
+    aguardandoRespostas = false;
+    reqRespostas = undefined;
+    requestSaldo();
 }
 
 function onErrorReply() {
-
+    alert("fudeo");
 }

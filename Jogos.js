@@ -28,13 +28,14 @@ const chancesWinWheel = [
 ]; // Rever chances
 		
 class Jogo {
-    constructor(nome) {
+    constructor(nome, mgr) {
         this._jogadores = {};
         this._apostas = [];
         this._timer = undefined;
         this._timerTime = 10000;
         this._nome = nome;
         this._UUID = this.genToken();
+        this.__M__ = mgr;
     }
 
     get UUID() { return this._UUID; }
@@ -54,6 +55,7 @@ class Jogo {
     getJogador(UUID) { return this._jogadores[UUID]; }
 
     addAposta(aposta) {
+        console.log("Aposta: ", aposta);
         if (aposta != undefined && aposta["jogador"].UUID in this._jogadores) {
             this._apostas.push(aposta);
             // Iniciar contagem para calcular a rodada (pode ser modificado em subclasses)
@@ -71,6 +73,7 @@ class Jogo {
             //console.log("[Jogos] Processando aposta", this._apostas[i])
             resultados.push({"aposta": this._apostas[i], "resultado": this._apostas[i].aplicarGanhos(resultado)});
         }
+        this.__M__.processDone(resultados);
         return resultados;
     }
     limparApostas() {
@@ -99,8 +102,8 @@ class Jogo {
 
 // ================================= BEGIN ROLETA =================================
 class Roleta extends Jogo {
-    constructor() {
-        super("roleta")
+    constructor(mgr) {
+        super("roleta", mgr);
     }
 
     girarRoleta() {
@@ -123,8 +126,8 @@ exports.Roleta = Roleta;
 
 // ================================= BEGIN BLACKJACK =================================
 class Blackjack extends Jogo {
-    constructor() {
-        super("blackjack")
+    constructor(mgr) {
+        super("blackjack", mgr);
         this._mãos = {};
         this._baralho = new Cartas.Baralho();
         for (var k in this._jogadores) this._mãos[this._jogadores[k]] = [];
@@ -151,8 +154,8 @@ class Blackjack extends Jogo {
 // ================================= BEGIN WIN WHEEL =================================
 class WinWheel extends Jogo {
 	
-	constructor() {
-        super("winWheel");
+	constructor(mgr) {
+        super("winWheel", mgr);
     }
     
     addAposta(aposta) {

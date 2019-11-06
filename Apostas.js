@@ -40,10 +40,12 @@ class Aposta {
     constructor(valor, jogador) {
         this._valor = valor;
         this._jogador = jogador;
+        this._UUID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         console.log("[Aposta] Construída!");
     }
     get valor() { return this._valor; }
     get jogador() { return this._jogador; }
+    get UUID() { return this._UUID; }
 }
 
 // ================================ APOSTA ROLETA ================================
