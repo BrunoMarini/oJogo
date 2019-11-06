@@ -68,7 +68,7 @@ class Manager {
     }
 
     addWaitlist(jogador, jogo, mesa, response) {
-        console.log("Adding, response", response);
+        //console.log("Adding, response", response);
         var obj = {"jogador":jogador, "jogo":jogo, "mesa":mesa, "response":response, "responseElements":[], "processed":false}
         // for (var i in this._waitlist) {
         //     if (obj)
@@ -78,7 +78,7 @@ class Manager {
     }
 
     processDone(resultList) {
-        console.log("[Manager] Processando resultados", resultList);
+        //console.log("[Manager] Processando resultados", resultList);
         for (var kr in resultList) {
             for (var kw in this._waitlist) {
                 if ( resultList[kr]["aposta"].jogador.nome == this._waitlist[kw]["jogador"] ) {
@@ -89,6 +89,7 @@ class Manager {
             }
         }
         // After all results are processed, check which ones to reply
+        var answered = 0;
         for (var kw in this._waitlist) {
             if ( this._waitlist[kw]["processed"] ) {
                 var response = this._waitlist[kw]["response"];
@@ -102,6 +103,7 @@ class Manager {
                     });
                 } 
                 response.send(JSON.stringify(data));
+                answered++;
             }
         }
         // After all results are replied, check which ones to delete
@@ -110,6 +112,7 @@ class Manager {
             if ( !this._waitlist[kw]["processed"] ) { newwaitlist.push(this._waitlist[kw]) }
         }
         this._waitlist = newwaitlist;
+        console.log("[Server] " + answered + " requests answered, " + this._waitlist.length + " remaining");
     }
 }
 

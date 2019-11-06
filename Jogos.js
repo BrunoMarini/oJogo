@@ -55,7 +55,7 @@ class Jogo {
     getJogador(UUID) { return this._jogadores[UUID]; }
 
     addAposta(aposta) {
-        console.log("Aposta: ", aposta);
+        //console.log("Aposta: ", aposta);
         if (aposta != undefined && aposta["jogador"].UUID in this._jogadores) {
             this._apostas.push(aposta);
             // Iniciar contagem para calcular a rodada (pode ser modificado em subclasses)
