@@ -1,8 +1,33 @@
 const precosTabelados = {
-    "winWheel": 500
+    "winWheel": 10
 }
     //{"jogo": winWheel, "valor": 500}
-
+const chancesWinWheel = [
+    {"premio":    0, "chance": 5},
+    {"premio": 1000, "chance": 5},
+    {"premio":  500, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 1},
+    {"premio":   50, "chance": 1},
+    {"premio":    0, "chance": 1},
+    {"premio":  600, "chance": 1},
+    {"premio":  500, "chance": 1},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":  400, "chance": 5},
+    {"premio":  300, "chance": 5},
+    {"premio":  200, "chance": 5},
+    {"premio":  100, "chance": 5},
+    {"premio":   50, "chance": 5},
+]; // Rever chances
 
 class ResultadoRoleta {
     constructor(numero) {
@@ -138,8 +163,36 @@ class ApostaBlackjack extends Aposta {
     }
 }
 
+// ================================ APOSTA BLACKJACK ================================
+class ApostaWinWheel extends Aposta {
+    constructor(params){
+        super(params["valor"], params["jogadorPtr"]);
+        this._valor = params["valor"];
+    }
+
+    aplicarGanhos(result) {
+        let pos = 0;
+        if (result != 0) {
+            pos = -1;
+            while (result > 0) { result -= chancesWinWheel[++pos]['chance'] / 100.0; }
+        }
+        var premio = chancesWinWheel[pos]['premio'];
+        console.log("[Aposta] Aplicando + " + premio + " para " + this._jogador.nome)
+        this._jogador.addDinheiro( premio );
+        return {"premio": premio, "posicao": pos};
+    }
+
+
+}
+
+function ApostaWinWheelAuto(params) {
+    return new ApostaWinWheel(params);
+}
+
 //exports.Roleta = ApostaRoleta;
 exports.RoletaAuto = ApostaRoletaAuto;
 exports.RRoleta = ResultadoRoleta;
 exports.Blackjack = ApostaBlackjack;
 exports.PrecosTabelados = precosTabelados;
+//exports.WinWheel = ApostaWinWheel;
+exports.WinWheelAuto = ApostaWinWheelAuto;

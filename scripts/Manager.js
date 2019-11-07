@@ -17,6 +17,7 @@ class Manager {
         var token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         while (token in this._objetos) token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         this._objetos[token] = objeto;
+        return objeto;
     }
 
     acrescentarJogador(jogador) { 
@@ -96,11 +97,16 @@ class Manager {
                 var elements = this._waitlist[kw]["responseElements"];
                 var data = [];
                 for (var ke in elements) {
-                    data.push({
+                    var obj = {
                         "apostaOriginal" : elements[ke]["aposta"].valor,
-                        "premio"         : elements[ke]["resultado"]["premio"],
-                        "justificativa"  : elements[ke]["resultado"]["justificativa"]
-                    });
+                    }
+                    for (var key in elements[ke]) {
+                        if (!(["aposta"].includes(key))) {
+                            console.log("[Manager] Key = " + key + ", val = ", elements[ke][key]);
+                            obj[key] = elements[ke][key];
+                        }
+                    }
+                    data.push(obj);
                 } 
                 response.send(JSON.stringify(data));
                 answered++;

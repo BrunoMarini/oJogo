@@ -1,31 +1,5 @@
 const Apostas = require("./Apostas.js");
 const Cartas = require("./Cartas.js");
-const chancesWinWheel = [
-    {"premio":    0, "chance": 5},
-    {"premio": 1000, "chance": 5},
-    {"premio":  500, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 1},
-    {"premio":   50, "chance": 1},
-    {"premio":    0, "chance": 1},
-    {"premio":  600, "chance": 1},
-    {"premio":  500, "chance": 1},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":   50, "chance": 5},
-]; // Rever chances
 		
 class Jogo {
     constructor(nome, mgr) {
@@ -159,25 +133,22 @@ class WinWheel extends Jogo {
     }
     
     addAposta(aposta) {
+        console.log("aposta: ", aposta);
         this._apostas.push(aposta);
+        console.log("vetor: ", this._apostas);
         // Calcular resultado imediatamente
-        this.calcularRodada();
+        setTimeout(this.calcularRodada.bind(this), 100);
+        return aposta;
     }
-	
-	sortear(){
-        let result = Math.random();
-        if (result == 0) return 0;
-		let pos = -1;
-		
-		while (result > 0) { result -= chances[++pos]['chance'] / 100.0; }
-        return pos;
-	}
-	
+
 	calcularRodada(){
-        let pos = this.sortear();
-		console.log("Result = " + pos + "; valor = " + chances[pos]['premio']);
-		return {"posicao": pos, "recompensa": chances[pos]['premio']};	
-	}
+        let rolado = Math.random();
+        var resultado = this._apostas[0].aplicarGanhos(rolado);
+        this.__M__.processDone([{"aposta":this._apostas[0], "resultado":resultado}]);
+        //let pos = this.sortear();
+		//console.log("Result = " + pos + "; valor = " + chances[pos]['premio']);
+		//return {"posicao": pos, "recompensa": chances[pos]['premio']};	
+    }
 }
 
 exports.WinWheel = WinWheel;

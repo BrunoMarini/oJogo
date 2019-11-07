@@ -1693,11 +1693,11 @@ Winwheel.prototype.getRotationPosition = function()
 // ==================================================================================================================================================
 // This function starts the wheel's animation by using the properties of the animation object of of the wheel to begin the a greensock tween.
 // ==================================================================================================================================================
-Winwheel.prototype.startAnimation = function()
+Winwheel.prototype.startAnimation = function(casaParada)
 {
     if (this.animation) {
         // Call function to compute the animation properties.
-        this.computeAnimation();
+        this.computeAnimation(casaParada);
 
         // Set this global variable to this object as an external function is required to call the draw() function on the wheel
         // each loop of the animation as Greensock cannot call the draw function directly on this class.
@@ -1765,7 +1765,7 @@ Winwheel.prototype.resumeAnimation = function()
 // before it starts. This allows the developer to change the animation properties after the wheel has been created
 // and have the animation use the new values of the animation properties.
 // ====================================================================================================================
-Winwheel.prototype.computeAnimation = function()
+Winwheel.prototype.computeAnimation = function(casaParada)
 {
     if (this.animation) {
         // Set the animation parameters for the specified animation type including some sensible defaults if values have not been specified.
@@ -1815,7 +1815,7 @@ Winwheel.prototype.computeAnimation = function()
             if (this.animation.stopAngle == null) {
                 // If the stop angle has not been specified then pick random between 0 and 359.
                 //24 casas 0 - 23
-                var casaParada = 2;
+                //var casaParada = 2;
                 var stopAngle = 7.5 + 15 * casaParada;
                 this.animation._stopAngle = Math.floor(stopAngle);  //CHANGE
             } else {

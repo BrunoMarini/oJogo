@@ -18,7 +18,7 @@
                         <label id="saldoJogador"></label>
                         <br>
                         <br>
-                        <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
+                        <img id="spin_button" src="spin_on.png" alt="Spin" onClick="enviarAposta();" />
                         <br /><br />
                         &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
                     </div>
@@ -31,6 +31,10 @@
             </tr>
         </table>
         <script>
+
+            let aguardandoRespostas = false;
+            let reqRespostas = undefined;
+
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
                 'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
@@ -46,7 +50,7 @@
                    {'fillStyle' : '#f6989d', 'text' : '200'},
                    {'fillStyle' : '#00aef0', 'text' : '300'},
                    {'fillStyle' : '#f26522', 'text' : '400'},
-                   {'fillStyle' : '#000000', 'text' : '100'},
+                   {'fillStyle' : '#909090', 'text' : '100'},
                    {'fillStyle' : '#e70697', 'text' : '200'},
                    {'fillStyle' : '#fff200', 'text' : '300'},
                    {'fillStyle' : '#f6989d', 'text' : '400'},
@@ -58,7 +62,7 @@
                    {'fillStyle' : '#00aef0', 'text' : '200'},
                    {'fillStyle' : '#ee1c24', 'text' : '300'},
                    {'fillStyle' : '#f6989d', 'text' : '400'},
-                   {'fillStyle' : '#000000', 'text' : '100'},
+                   {'fillStyle' : '#909090', 'text' : '100'},
                    {'fillStyle' : '#f26522', 'text' : '200'},
                    {'fillStyle' : '#3cb878', 'text' : '300'},
                    {'fillStyle' : '#a186be', 'text' : '400'},
@@ -100,7 +104,6 @@
 
             function onload(){
                 requestSaldo();
-                requestPrecoAposta();
             }
 
             function requestSaldo() {
@@ -121,9 +124,69 @@
             // -------------------------------------------------------
             // Click handler for spin button.
             // -------------------------------------------------------
-            function startSpin()
+            function enviarAposta() {
+
+                var req = new XMLHttpRequest();
+                var url = '/tryAposta';
+                req.open('POST', url, true);
+
+                msgData = {valor:undefined}
+                req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                console.log("enviando: " + JSON.stringify(msgData));
+                req.send(JSON.stringify(msgData));
+
+                req.onreadystatechange = function() {
+                    if (req.readyState == 4 && req.status == 200) {
+                        var resp = JSON.parse(req.responseText);
+                        if (!(resp["sucesso"])) {
+                            alert(resp["texto"]);
+                        } else {
+                            // Iniciar uma espera assincrona pelo resultado da aposta
+                            if (!aguardandoRespostas) {
+                                reqRespostas = new XMLHttpRequest();
+                                reqRespostas.open('POST','/replyAposta',true); // set this to POST if you would like
+                                reqRespostas.addEventListener('load',onLoadReply);
+                                reqRespostas.addEventListener('error',onErrorReply);
+                                reqRespostas.send();
+                                aguardandoRespostas = true;
+                            }
+                            requestSaldo();
+                        }
+                    }
+                }
+
+                
+            }
+
+            function requestSaldo() {
+                var req = new XMLHttpRequest();
+                req.open('POST', "/reqSaldo", true);
+                req.setRequestHeader('Content-Type', 'plain/text;charset=UTF-8');
+                req.send();
+
+                req.onreadystatechange = function() {
+                    if (req.readyState == 4 && req.status == 200)
+                    document.getElementById("saldoJogador").innerHTML = "Saldo: " + req.responseText;
+                }
+            }
+
+            function onLoadReply() {
+                var response = this.responseText;
+                var parsedResponse = JSON.parse(response);
+                var casaParada = parsedResponse[0]["resultado"]["posicao"];
+                //theWheel.startAnimation(casaParada);
+                startSpin(casaParada);
+                requestSaldo();
+                aguardandoRespostas = false;
+                reqRespostas = undefined;
+            }
+
+            function onErrorReply() {
+                alert("fudeo");
+            }
+
+            function startSpin(casaParada)
             {
-                  
                 document.getElementById('spin_button').src       = "spin_off.png";
 
                 // Ensure that spinning can't be clicked again while already running.
@@ -139,7 +202,7 @@
                     }
 
                     // Begin the spin animation by calling startAnimation on the wheel object.
-                    theWheel.startAnimation();
+                    theWheel.startAnimation(casaParada);
 
                     // Set to true so that power can't be changed and spin button re-enabled during
                     // the current animation. The user will have to reset before spinning again.

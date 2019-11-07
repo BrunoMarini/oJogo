@@ -125,9 +125,9 @@ app.post('/tryAposta', function(req, res) {
     console.log("[Server] aposta template = ", aposta)
     var ok = M.gerarAposta(aposta);
     if (ok) {
-        res.send("Aposta efetuada!");
+        res.send(JSON.stringify({sucesso: true, texto:"Aposta efetuada!"}));
     } else {
-        res.send("A aposta não pode ser feita, cheque seu saldo...");
+        res.send(JSON.stringify({sucesso: false, texto:"A aposta não pode ser feita, cheque seu saldo..."}));
     }
 });
 

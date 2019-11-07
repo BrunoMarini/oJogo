@@ -1,7 +1,8 @@
 const Apostas = require("./Apostas.js");
 const red = {
     "roleta": Apostas.RoletaAuto,
-    "blackjack": Apostas.Blackjack
+    "blackjack": Apostas.Blackjack,
+    "winWheel": Apostas.WinWheelAuto
 }
 
 class Jogador {
@@ -36,10 +37,13 @@ class Jogador {
     apostar(params) {
         // Checando token de autenticação
         if (params["authToken"] != this._authToken) return undefined;
+        console.log("[Jogador] Autenticado");
         // Checando se o preço é tabelado
         if (params["valor"] == undefined) params["valor"] = Apostas.PrecosTabelados[params["jogo"]];
+        console.log("[Jogador] Novo valor = " + params["valor"]);
         // Checando se tem saldo
         if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
+        console.log("[Jogador] Saldo OK");
         // Gerando aposta
         console.log("[Jogador] Gerando aposta no valor de " + params["valor"] + " em " + params["jogo"] + (params["tipo"] != undefined ? (" (tipo " + params["tipo"] + ")") : ""));
         params["jogadorPtr"] = this;
