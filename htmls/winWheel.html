@@ -13,14 +13,12 @@
                     <div class="power_controls" align="center">
                         <br />
                         <br />
-                        <h1>Aposta 10 moedas</h1>
+                        <h1>Aposta 50 moedas</h1>
                         <br />
                         <label id="saldoJogador"></label>
                         <br>
                         <br>
                         <img id="spin_button" src="spin_on.png" alt="Spin" onClick="enviarAposta();" />
-                        <br /><br />
-                        &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
                     </div>
                 </td>
                 <td width="438" height="582" class="the_wheel" align="center" valign="center">
@@ -45,30 +43,30 @@
                 'numSegments'     : 24,         // Specify number of segments.
                 'segments'        :             // Define segments including colour and text.
                 [                               // font size and test colour overridden on backrupt segments.
-                   {'fillStyle' : '#ee1c24', 'text' : ' 50'},
-                   {'fillStyle' : '#3cb878', 'text' : '100'},
-                   {'fillStyle' : '#f6989d', 'text' : '200'},
-                   {'fillStyle' : '#00aef0', 'text' : '300'},
-                   {'fillStyle' : '#f26522', 'text' : '400'},
-                   {'fillStyle' : '#909090', 'text' : '100'},
-                   {'fillStyle' : '#e70697', 'text' : '200'},
-                   {'fillStyle' : '#fff200', 'text' : '300'},
-                   {'fillStyle' : '#f6989d', 'text' : '400'},
-                   {'fillStyle' : '#ee1c24', 'text' : '500'},
-                   {'fillStyle' : '#3cb878', 'text' : '600'},
-                   {'fillStyle' : '#ffffff', 'text' : '  0'},
-                   {'fillStyle' : '#a186be', 'text' : ' 50'},
-                   {'fillStyle' : '#fff200', 'text' : '100'},
-                   {'fillStyle' : '#00aef0', 'text' : '200'},
-                   {'fillStyle' : '#ee1c24', 'text' : '300'},
-                   {'fillStyle' : '#f6989d', 'text' : '400'},
-                   {'fillStyle' : '#909090', 'text' : '100'},
-                   {'fillStyle' : '#f26522', 'text' : '200'},
-                   {'fillStyle' : '#3cb878', 'text' : '300'},
-                   {'fillStyle' : '#a186be', 'text' : '400'},
-                   {'fillStyle' : '#fff200', 'text' : '500'},
-                   {'fillStyle' : '#00aef0', 'text' : '1000'},
-                   {'fillStyle' : '#ffffff', 'text' : '  0'}
+                   {'fillStyle' : '#ee1c24', 'text' : '1000'},
+                   {'fillStyle' : '#3cb878', 'text' : '$ 90'},
+                   {'fillStyle' : '#f6989d', 'text' : '$ 80'},
+                   {'fillStyle' : '#00aef0', 'text' : '$ 70'},
+                   {'fillStyle' : '#f26522', 'text' : '$ 60'},
+                   {'fillStyle' : '#909090', 'text' : '$ 50'},
+                   {'fillStyle' : '#e70697', 'text' : '$ 40'},
+                   {'fillStyle' : '#fff200', 'text' : '$ 30'},
+                   {'fillStyle' : '#f6989d', 'text' : '$ 20'},
+                   {'fillStyle' : '#ee1c24', 'text' : '$ 10'},
+                   {'fillStyle' : '#3cb878', 'text' : '$ 5'},
+                   {'fillStyle' : '#ffffff', 'text' : 'Zero'},
+                   {'fillStyle' : '#a186be', 'text' : '$ 100'},
+                   {'fillStyle' : '#fff200', 'text' : '$ 90'},
+                   {'fillStyle' : '#00aef0', 'text' : '$ 80'},
+                   {'fillStyle' : '#ee1c24', 'text' : '$ 70'},
+                   {'fillStyle' : '#f6989d', 'text' : '$ 60'},
+                   {'fillStyle' : '#909090', 'text' : '$ 50'},
+                   {'fillStyle' : '#f26522', 'text' : '$ 40'},
+                   {'fillStyle' : '#3cb878', 'text' : '$ 30'},
+                   {'fillStyle' : '#a186be', 'text' : '$ 20'},
+                   {'fillStyle' : '#fff200', 'text' : '$ 10'},
+                   {'fillStyle' : '#00aef0', 'text' : '$ 5'},
+                   {'fillStyle' : '#ffffff', 'text' : 'Zero'}
                 ],
                 'animation' :           // Specify the animation to use.
                 {
@@ -176,7 +174,6 @@
                 var casaParada = parsedResponse[0]["resultado"]["posicao"];
                 //theWheel.startAnimation(casaParada);
                 startSpin(casaParada);
-                requestSaldo();
                 aguardandoRespostas = false;
                 reqRespostas = undefined;
             }
@@ -237,7 +234,9 @@
                     alert('Oh no, you have gone BANKRUPT!');
                 } else {
                     alert("You have won " + indicatedSegment.text);
+                    resetWheel();
                 }
+                requestSaldo();
             }
         </script>
     </body>

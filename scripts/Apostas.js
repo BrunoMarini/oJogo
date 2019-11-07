@@ -1,32 +1,33 @@
 const precosTabelados = {
-    "winWheel": 10
+    "winWheel": 50
 }
     //{"jogo": winWheel, "valor": 500}
 const chancesWinWheel = [
-    {"premio":    0, "chance": 5},
-    {"premio": 1000, "chance": 5},
-    {"premio":  500, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 1},
-    {"premio":   50, "chance": 1},
-    {"premio":    0, "chance": 1},
-    {"premio":  600, "chance": 1},
-    {"premio":  500, "chance": 1},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":  400, "chance": 5},
-    {"premio":  300, "chance": 5},
-    {"premio":  200, "chance": 5},
-    {"premio":  100, "chance": 5},
-    {"premio":   50, "chance": 5},
+    {"premio":    0, "chance":  20}, //1
+    {"premio":    5, "chance":  15}, //2
+    {"premio":   10, "chance": 7.5}, //3
+    {"premio":   20, "chance":   7}, //4
+    {"premio":   30, "chance": 5.5}, //5
+    {"premio":   40, "chance":   5}, //6
+    {"premio":   50, "chance": 4.5}, //7
+    {"premio":   60, "chance": 2.5}, //8
+    {"premio":   70, "chance":   2}, //9
+    {"premio":   80, "chance": 1.5}, //10
+    {"premio":   90, "chance":   1}, //11
+    {"premio":  100, "chance": 0.8}, //12 <<<<<<<
+
+    {"premio":    0, "chance":   20}, //13
+    {"premio":    5, "chance":   15}, //14
+    {"premio":   10, "chance": 7.5}, //15
+    {"premio":   20, "chance":   7}, //16
+    {"premio":   30, "chance": 5.5}, //17
+    {"premio":   40, "chance":   5}, //18
+    {"premio":   50, "chance": 4.5}, //19
+    {"premio":   60, "chance": 2.5}, //20
+    {"premio":   70, "chance":   2}, //21
+    {"premio":   80, "chance": 1.5}, //22
+    {"premio":   90, "chance":   1}, //23
+    {"premio": 1000, "chance": 0.1}, //24
 ]; // Rever chances
 
 class ResultadoRoleta {
