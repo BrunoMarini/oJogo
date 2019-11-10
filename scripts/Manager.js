@@ -17,7 +17,7 @@ class Manager {
         var token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         while (token in this._objetos) token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         this._objetos[token] = objeto;
-        return objeto;
+        return token;
     }
 
     acrescentarJogador(jogador) { 
@@ -53,7 +53,13 @@ class Manager {
         var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta(
             this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params)
         );
-        return (r == undefined ? false : true);
+        if (r != undefined) {
+            var token = this.acrescentarObjeto(r);
+            r.fetchToken = token;
+            return token;
+        } else {
+            return undefined;
+        }
     }
 
     sentarEmMesa(jogador, jogo, mesa) {
@@ -68,13 +74,9 @@ class Manager {
         if (jogador in this._jogadores) return this._jogadores[jogador].dinheiro;
     }
 
-    addWaitlist(jogador, jogo, mesa, response) {
+    addWaitlist(jogador, jogo, mesa, token, response) {
         //console.log("Adding, response", response);
-        var obj = {"jogador":jogador, "jogo":jogo, "mesa":mesa, "response":response, "responseElements":[], "processed":false}
-        // for (var i in this._waitlist) {
-        //     if (obj)
-        // }
-        //this._waitlist[Object.keys(this._waitlist).length] = 
+        var obj = {"jogador":jogador, "jogo":jogo, "mesa":mesa, "token":token, "response":response, "responseElements":[], "processed":false}
         this._waitlist.push(obj);
     }
 
@@ -82,6 +84,7 @@ class Manager {
         //console.log("[Manager] Processando resultados", resultList);
         for (var kr in resultList) {
             for (var kw in this._waitlist) {
+                //if ( resultList[kr]["aposta"].) {
                 if ( resultList[kr]["aposta"].jogador.nome == this._waitlist[kw]["jogador"] ) {
                     console.log("[Manager] Found matching request for " + this._waitlist[kw]["jogador"]);
                     this._waitlist[kw]["processed"] = true;

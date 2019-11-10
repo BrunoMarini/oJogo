@@ -63,14 +63,17 @@ class ResultadoRoleta {
 
 // ================================ APOSTAS ================================
 class Aposta {
+    //constructor(valor, jogador, sala) {
     constructor(valor, jogador) {
         this._valor = valor;
         this._jogador = jogador;
+        //this._sala = sala;
         this._UUID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         console.log("[Aposta] Construída!");
     }
     get valor() { return this._valor; }
     get jogador() { return this._jogador; }
+    //get sala() { return this._sala; }
     get UUID() { return this._UUID; }
 }
 
@@ -185,6 +188,15 @@ class ApostaWinWheel extends Aposta {
 
 
 }
+
+function ExpectedValueWinWheel() {
+    var s = 0;
+    for (var k in chancesWinWheel) { s += chancesWinWheel[k]['premio'] * chancesWinWheel[k]['chance'] / 100.0; }
+    console.log("[DEBUG] Expected value on WinWheel = " + s);
+    return s;
+}
+
+//ExpectedValueWinWheel();
 
 function ApostaWinWheelAuto(params) {
     return new ApostaWinWheel(params);

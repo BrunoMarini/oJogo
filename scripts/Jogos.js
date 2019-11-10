@@ -37,9 +37,14 @@ class Jogo {
                 console.log("[Jogos] Iniciando contagem regressiva de " + this._timerTime + "ms para processar " + this._nome + " - " + this._UUID);
                 this._timer = setTimeout( this.calcularRodada.bind(this), this._timerTime );
             }
+            aposta._sala = this;
+            // Retornar valor para verificação
+            return aposta;
+        } else { // Se o jogador não estiver na sala (aposta fraudulenta)
+            console.log("[Jogos] Aposta inválida:", aposta);
+            // Retornar valor para verificação
+            return undefined;
         }
-        // Retornar valor para verificação
-        return aposta;
     }
     aplicarTodasApostas(resultado) {
         var resultados = [];

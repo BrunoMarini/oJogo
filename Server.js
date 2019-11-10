@@ -123,9 +123,9 @@ app.post('/tryAposta', function(req, res) {
     if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
 
     console.log("[Server] aposta template = ", aposta)
-    var ok = M.gerarAposta(aposta);
-    if (ok) {
-        res.send(JSON.stringify({sucesso: true, texto:"Aposta efetuada!"}));
+    var tokenOK = M.gerarAposta(aposta);
+    if (tokenOK != undefined) {
+        res.send(JSON.stringify({sucesso: true, texto:"Aposta efetuada!", token:tokenOK}));
     } else {
         res.send(JSON.stringify({sucesso: false, texto:"A aposta não pode ser feita, cheque seu saldo..."}));
     }
@@ -152,8 +152,10 @@ app.post('/replyAposta', function(req, res) {
     var sala = roomData[1];
     var authToken = roomData[2];
     var jogo = roomData[0];
-
-    M.addWaitlist(usuario, jogo, sala, res);
+    //var tokenAposta = req.body.tokenAposta;
+    var tokenAposta = undefined;
+    
+    M.addWaitlist(usuario, jogo, sala, tokenAposta, res);
 });
 
 //================ Page require ================ 

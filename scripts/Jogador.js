@@ -39,7 +39,7 @@ class Jogador {
         if (params["authToken"] != this._authToken) return undefined;
         console.log("[Jogador] Autenticado");
         // Checando se o preço é tabelado
-        if (params["valor"] == undefined) params["valor"] = Apostas.PrecosTabelados[params["jogo"]];
+        if (params["valor"] == undefined || params["jogo"] in Apostas.PrecosTabelados) params["valor"] = Apostas.PrecosTabelados[params["jogo"]];
         console.log("[Jogador] Novo valor = " + params["valor"]);
         // Checando se tem saldo
         if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
