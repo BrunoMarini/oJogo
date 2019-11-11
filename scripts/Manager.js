@@ -123,6 +123,9 @@ class Manager {
         this._waitlist = newwaitlist;
         console.log("[Server] " + answered + " requests answered, " + this._waitlist.length + " remaining");
     }
+
+    getDateNextRound(jogo, mesa) { return this.acessarMesa(jogo, mesa).dateNextRound; }
+    getTimeToNextRound(jogo, mesa) { return this.acessarMesa(jogo, mesa).timeToNextRound; }
 }
 
 exports.MGR = Manager;

@@ -10,6 +10,7 @@ class Jogo {
         this._nome = nome;
         this._UUID = this.genToken();
         this.__M__ = mgr;
+        this._nextRoundTriggeredAt = undefined;
     }
 
     get UUID() { return this._UUID; }
@@ -36,6 +37,7 @@ class Jogo {
             if (this._timer == undefined) {
                 console.log("[Jogos] Iniciando contagem regressiva de " + this._timerTime + "ms para processar " + this._nome + " - " + this._UUID);
                 this._timer = setTimeout( this.calcularRodada.bind(this), this._timerTime );
+                this._nextRoundTriggeredAt = new Date();
             }
             aposta._sala = this;
             // Retornar valor para verificação
@@ -59,6 +61,7 @@ class Jogo {
         console.log("[Roleta] Limpando apostas");
         this._apostas = [];
         this._timer = undefined;
+        this._nextRoundTriggeredAt = undefined;
     }
     logarApostas() {
         for (var i in this._apostas) {
@@ -77,6 +80,9 @@ class Jogo {
     calcularRodada() { 
         // Abstract
     }
+
+    get dateNextRound() { return (this._timer ? new Date(this._nextRoundTriggeredAt.getDate() + this._timerTime) : undefined); }
+    get timeToNextRound() { return (this._timer ? this._nextRoundTriggeredAt.getDate() + this._timerTime - new Date().getDate() : undefined); }
 }
 
 // ================================= BEGIN ROLETA =================================
@@ -142,7 +148,7 @@ class WinWheel extends Jogo {
         this._apostas.push(aposta);
         console.log("vetor: ", this._apostas);
         // Calcular resultado imediatamente
-        setTimeout(this.calcularRodada.bind(this), 100);
+        setTimeout(this.calcularRodada.bind(this));
         return aposta;
     }
 
