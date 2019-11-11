@@ -13,7 +13,7 @@ function requestSaldo() {
 
     req.onreadystatechange = function() {
         if (req.readyState == 4 && req.status == 200)
-            document.getElementById("saldoDisplay").innerHTML = "Saldo: " + req.responseText;
+            document.getElementById("saldoDisplay").innerHTML = "Saldo: " + req.responseText + "₿";
     }
 }
 
@@ -51,13 +51,14 @@ function enviarAposta() {
 
 function onLoadReply() {
     var response = this.responseText;
-    alert("Servidor respondeu: " + response);
+    //alert("Servidor respondeu: " + response);
     var parsedResponse = JSON.parse(response);
+    document.latestParsedResponse = parsedResponse;
     var numSorteio = parseInt(parsedResponse[0]["valorSorteio"]["_numero"]);
     document.spinTo(numSorteio);
     aguardandoRespostas = false;
     reqRespostas = undefined;
-    requestSaldo();
+    //requestSaldo();
 }
 
 function onErrorReply() {
@@ -242,6 +243,7 @@ window.onload = function() {
         $(numbg)
             .css(pfx + animationPlayState, playStateRunning)
             .css(pfx + "animation", "none");
+
         $(toppart)
             .css(pfx + animationPlayState, playStateRunning)
             .css(pfx + "animation", "none");
@@ -252,7 +254,7 @@ window.onload = function() {
 
     document.spinTo = function(num) {
         //get location
-        console.log(document.numberLoc);
+        //console.log(document.numberLoc);
         var temp = document.numberLoc[num][0] + 4;
 
         //randomize
@@ -283,7 +285,7 @@ window.onload = function() {
             duration: temptime, // [optional, default: 0, in ms] how long you want it to last in milliseconds
             timingFunction: "ease-in-out", // [optional, default: ease] specifies the speed curve of the animation
             complete: function() {
-                finishSpin();
+                document.finishSpin();
             } //[optional]  Function fired after the animation is complete. If repeat is infinite, the function will be fired every time the animation is restarted.
         });
     }
@@ -315,6 +317,21 @@ window.onload = function() {
             timingFunction: "ease-in-out", // [optional, default: ease] specifies the speed curve of the animation
             complete: function() {} //[optional]  Function fired after the animation is complete. If repeat is infinite, the function will be fired every time the animation is restarted.
         });
+    }
+
+    document.finishSpin = function() {
+        var p = document.latestParsedResponse;
+        console.log(p);
+        var total = 0;
+        for (var i in p) {
+            total += parseInt(p[i]["resultado"]["premio"]);
+        }
+        if (total > 0) {
+            alert ("Você ganhou " + total + "₿!!");
+        } else {
+            alert ("Não foi dessa vez...");
+        }
+        requestSaldo();
     }
 }
 //createWheel();
