@@ -111,6 +111,7 @@ class Manager {
                     }
                     data.push(obj);
                 } 
+                console.log("[Manager] Replying", data);
                 response.send(JSON.stringify(data));
                 answered++;
             }

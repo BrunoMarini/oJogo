@@ -166,6 +166,7 @@ app.post('/replyAposta', function(req, res) {
 app.all('/roletaDOM.js', function(req, res){
     res.sendFile(fetchFile("/scripts/roletaDOM.js"));
 });
+app.all('/roleta.css', (req, res) => { res.sendFile(fetchFile("/styles/roleta.css")); });
 /* Fim Roleta */
 
 /* Inicio Manager */
@@ -180,6 +181,10 @@ app.all('/Jogos.js', function(req, res){
 app.all('/Apostas.js', function(req, res){
     res.sendFile(fetchFile("/scripts/Apostas.js"));
 });
+
+app.all('/jquery.keyframes.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.keyframes.min.js")); });
+app.all('/jquery.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
+app.all('/jquery-3.3.1.slim.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
 /* Fim Manager */
 
 /* Inicio Peão casa própria */

@@ -1,19 +1,49 @@
 <meta charset="UTF-8">
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="roleta.css">
+        <script src="jquery-3.3.1.slim.min.js"></script>
+        <script src="jquery.keyframes.min.js"></script>
         <script src="roletaDOM.js"></script>
     </head>
     <body onload="onload()">
         <title>Roletalha</title>
+
         <div id="saldoDisplay">Saldo: </div>
+
         <form onsubmit='enviarAposta()' action="javascript:void(0);">
             <div>
                 <b>Valor: </b><input type="text" name="valor" id="fieldValor" required></br>
                 <button type="">Apostar</button>
             </div>
-        </form>
-        <!-- <textarea id="fieldValor" rows="1" cols="10"></textarea>
-        <input type="button" name="buttonSend" class="button pink" value="Apostar" onclick="enviarAposta()"></input> -->
-        <!-- <a href="http://localhost:8080/htmls/login.html">Entrar</a> -->
+        </form> 
+
+        <div class="spinner">
+            <div class="ball"><span></span></div>
+            <div class="platebg"></div>
+            <div class="platetop"></div>
+            <div id="toppart" class="topnodebox">
+                <div class="silvernode"></div>
+                <div class="topnode silverbg"></div>
+                <span class="top silverbg"></span>
+                <span class="right silverbg"></span>
+                <span class="down silverbg"></span>
+                <span class="left silverbg"></span>
+            </div>
+            <div id="rcircle" class="pieContainer">
+                <div class="pieBackground"></div>
+            </div>
+        </div>
+          
+        <div class="control">
+            <span class="message">
+                Number Stop: <input id="numwin" type="text" value="24"> Leave blank for random<br><br>
+            </span>
+            <div>
+              <div id="btnSpin" class="button">Spin</div>
+              <div id="btnb" class="button">Bigger</div>
+              <div id="btns" class="button">Smaller</div>
+            </div>
+        </div>
     </body>
 </html>
