@@ -166,7 +166,8 @@ app.post('/replyAposta', function(req, res) {
 app.all('/roletaDOM.js', function(req, res){
     res.sendFile(fetchFile("/scripts/roletaDOM.js"));
 });
-app.all('/roleta.css', (req, res) => { res.sendFile(fetchFile("/styles/roleta.css")); });
+app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaDisco.css")); });
+app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
 /* Fim Roleta */
 
 /* Inicio Manager */

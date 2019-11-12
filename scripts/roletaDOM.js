@@ -17,19 +17,19 @@ function requestSaldo() {
     }
 }
 
-function enviarAposta() {
-    var valor = parseInt(document.getElementById("fieldValor").value);
-    document.getElementById("fieldValor").value = ""
+function enviarAposta(apostaData) {
+    // var valor = parseInt(document.getElementById("fieldValor").value);
+    // document.getElementById("fieldValor").value = ""
 
     var req = new XMLHttpRequest();
     var url = '/tryAposta';
     req.open('POST', url, true);
 
-    console.log("Chamei com valor = " + valor)
-    msgData = {valor:valor, tipo:"vermelho"}
+    console.log("Chamei com valor = " + apostaData);
+    // msgData = {valor:valor, tipo:"vermelho"}
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    console.log("enviando: " + JSON.stringify(msgData));
-    req.send(JSON.stringify(msgData));
+    console.log("enviando: " + JSON.stringify(apostaData));
+    req.send(JSON.stringify(apostaData));
 
     req.onreadystatechange = function() {
         if (req.readyState == 4 && req.status == 200) {
