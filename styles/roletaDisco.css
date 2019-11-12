@@ -1,14 +1,4 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/184983947.jpg); */
-    overflow: hidden;
-    margin: 0;
-  }
-  
-  .control {
+  /* .control {
     margin: 30px auto;
     text-align: center;
     color: #fff;
@@ -22,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
+  } */
   .pieBackground {
       background-color: rgba(240, 240, 240, 1);
       position: absolute;

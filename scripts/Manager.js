@@ -101,7 +101,10 @@ class Manager {
                 var data = [];
                 for (var ke in elements) {
                     var obj = {
-                        "apostaOriginal" : elements[ke]["aposta"].valor,
+                        "apostaOriginal" : {},//elements[ke]["aposta"].valor,
+                    }
+                    for (var key in elements[ke]["aposta"]) {
+                        console.log("[Manager] Key: " + key + "; val: ", elements[ke]["aposta"][key]);
                     }
                     for (var key in elements[ke]) {
                         if (!(["aposta"].includes(key))) {

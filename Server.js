@@ -168,6 +168,7 @@ app.all('/roletaDOM.js', function(req, res){
 });
 app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaDisco.css")); });
 app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
+app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaGeneral.css")); });
 /* Fim Roleta */
 
 /* Inicio Manager */
@@ -186,6 +187,7 @@ app.all('/Apostas.js', function(req, res){
 app.all('/jquery.keyframes.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.keyframes.min.js")); });
 app.all('/jquery.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
 app.all('/jquery-3.3.1.slim.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
+app.all('/CasinoRoyale.ttf', (req, res) => { res.sendFile(fetchFile("/recursos/fontes/UpperEastSide.ttf")); });
 /* Fim Manager */
 
 /* Inicio Peão casa própria */

@@ -12,9 +12,27 @@ function requestSaldo() {
     req.send();
 
     req.onreadystatechange = function() {
-        if (req.readyState == 4 && req.status == 200)
+        if (req.readyState == 4 && req.status == 200) { 
             document.getElementById("saldoDisplay").innerHTML = "Saldo: " + req.responseText + "₿";
+            document.saldo = req.responseText;
+            reloadCurrency();
+        }
     }
+}
+
+document.apostaStates = {
+    "Duzia 1": 0,
+    "Duzia 2": 0, 
+    "Duzia 3": 0, 
+    "Baixo": 0,
+    "Alto": 0,
+    "Vermelho": 0,
+    "Preto": 0,
+    "Ímpar": 0,
+    "Par": 0,
+    "Coluna 1": 0,
+    "Coluna 2": 0,
+    "Coluna 3": 0
 }
 
 function enviarAposta(apostaData) {
@@ -34,7 +52,7 @@ function enviarAposta(apostaData) {
     req.onreadystatechange = function() {
         if (req.readyState == 4 && req.status == 200) {
             alert(req.responseText);
-            requestSaldo();
+            //requestSaldo();
         }
     }
 
@@ -191,11 +209,109 @@ function createWheel() {
         $(newSlice).appendTo(rinner);
     }
 
-    console.log(document.numberLoc);
+    //console.log(document.numberLoc);
+}
+
+function addToAposta(tipo, valor) { console.log("Add " + valor + " to " + tipo); document.apostaStates[tipo] += parseInt(valor); }
+function rmFromAposta(tipo, valor) { console.log("Rm " + valor + " to " + tipo); document.apostaStates[tipo] -= parseInt(valor); }
+function sendAllApostas() {
+    // Remover chips colocados na mesa
+    //$("div[placedCoin=true]").remove();
+    // Impedir que o usuário mexa nas moedas
+    $("div[id='currencyCoin']").draggable("disable");
+    var template = {
+        "Duzia 1": {tipo:"duzia", duzia:1},
+        "Duzia 2": {tipo:"duzia", duzia:2},
+        "Duzia 3": {tipo:"duzia", duzia:3},
+        "Baixo": {tipo:"baixo"},
+        "Alto": {tipo:"alto"},
+        "Vermelho": {tipo:"vermelho"},
+        "Preto": {tipo:"preto"},
+        "Ímpar": {tipo:"impar"},
+        "Par": {tipo:"par"},
+        "Coluna 1": {tipo:"coluna", coluna:1},
+        "Coluna 2": {tipo:"coluna", coluna:2},
+        "Coluna 3": {tipo:"coluna", coluna:3}
+    }
+    var a = document.apostaStates
+    var t;
+    for (var k in a) {
+        if (a[k] > 0) {
+            var val = parseInt(k) || undefined;
+            if (val != undefined) {
+                enviarAposta({valor: a[k], tipo:"valor", numero:val});
+            } else {
+                t = template[k];
+                t["valor"] = a[k];
+                enviarAposta(t);
+            }
+        }
+    }
+}
+
+function reloadCurrency() {
+    var saldo = document.saldo;
+    console.log("reloadando to " + saldo)
+    // Removendo moedas antigas
+    $("div[id='currencyCoin']").remove();
+    
+    // Adicionando novas
+    var valores = [1000, 500, 100, 50, 20, 10, 5, 1];
+    var cuoins = [0, 0, 0, 0, 0, 0, 0, 0];
+    var pos = 0;
+    while (saldo > 0) {
+        while (saldo < valores[pos]) pos++;
+        //console.log("appendando moeda de " + valores[pos]);
+        cuoins[pos]++;
+        //$("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[pos] + "' valor='" + valores[pos] + "'>" + valores[pos] + "₿</div>");
+        saldo -= valores[pos];
+    }
+    while (pos < cuoins.length - 1) {
+        cuoins[pos]--;
+        //console.log("removendo moeda de " + valores[pos]);
+        saldo = valores[pos];
+        pos++;
+        while (saldo > 0) {
+            while (saldo < valores[pos]) pos++;
+            //console.log("appendando moeda de " + valores[pos]);
+            cuoins[pos]++;
+            //$("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[pos] + "' valor='" + valores[pos] + "'>" + valores[pos] + "₿</div>");
+            saldo -= valores[pos];
+            //console.log("new saldo = " + saldo);
+        }
+    }
+    for (var i in cuoins) {
+        for (var c = 0; c < cuoins[i]; c++) {
+            $("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[i] + "' valor='" + valores[i] + "'><p class='currencyCoinVisor'>" + valores[i] + "₿</p></div>");
+            //console.log("added moeda ", valores[i])
+        }
+    }
+    $( "div[id='currencyCoin']" ).draggable();
+}
+
+function resetApostaStates() {
+    document.apostaStates = {
+        "Duzia 1": 0,
+        "Duzia 2": 0, 
+        "Duzia 3": 0, 
+        "Baixo": 0,
+        "Alto": 0,
+        "Vermelho": 0,
+        "Preto": 0,
+        "Ímpar": 0,
+        "Par": 0,
+        "Coluna 1": 0,
+        "Coluna 2": 0,
+        "Coluna 3": 0
+    }
+    for (var i = 0; i < 37; i++) document.apostaStates[i] = 0;
 }
 
 window.onload = function() {
     requestSaldo();
+    // ========== Creating aposta table ==========
+    resetApostaStates();
+
     var rotationsTime = 8;
     var wheelSpinTime = 6;
     var ballSpinTime = 5;
@@ -204,7 +320,7 @@ window.onload = function() {
     var btnSpin = $("#btnSpin");
     var toppart = $("#toppart");
     var pfx = $.keyframe.getVendorPrefix;
-    console.log("pfx = ",pfx);
+    //console.log("pfx = ",pfx);
     var transform = pfx + "transform";
     var rinner = $("#rcircle");
     var numberLoc = [];
@@ -212,26 +328,8 @@ window.onload = function() {
 
     console.log("Support for keyframes = ", $.keyframe.isSupported());
     this.createWheel();
-        
-    // btnSpin.click(function() {
-    //     console.log("Clicxk!!")
-    //     if ($("input").val() == "") {
-    //         var rndNum = Math.floor(Math.random() * 34 + 0);
-    //     } else {
-    //         var rndNum = $("input").val();
-    //     }
 
-    //     winningNum = rndNum;
-    //     spinTo(winningNum);
-    // });
-
-    // $("#btnb").click(function() {
-    //     $(".spinner").css("font-size", "+=.3em");
-    // });
-    // $("#btns").click(function() {
-    //     $(".spinner").css("font-size", "-=.3em");
-    // });
-
+    
     function resetAni() {
         animationPlayState = "animation-play-state";
         playStateRunning = "running";

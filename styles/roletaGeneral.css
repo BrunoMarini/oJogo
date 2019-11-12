@@ -1,0 +1,170 @@
+@font-face { font-family: "casinoRoyale"; src: url("CasinoRoyale.ttf") format('truetype'); } 
+
+html { overflow-y: scroll; }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/184983947.jpg); */
+    /* overflow: hidden; */
+    margin: 0;
+    font-family: "casinoRoyale";
+    /* position: absolute;  */
+}
+
+.moneyContainer {
+		width:600px;
+		height:200px;
+		margin: 0 0px;
+		padding: 0px 0;
+		text-align: center;
+		/* background-color: #014D43;
+		box-shadow: 0 0 0 5px #282828 inset, 0 0 0 10px #969696 inset, 0 0 6px rgba(255, 255, 255, 0.2); */
+}
+
+.currencyCoin {
+    transform: scale(1.7);
+    margin: 1em;
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 51px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5), 0 0 1px 0 rgba(0, 0, 0, 0.4) inset;
+    border-radius: 50%;
+    background-size: 51px 51px;
+    background-position: center center;
+}
+
+.currencyCoin:before {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    top: 2.5px;
+    left: 2.5px;
+    background-size: 51px 51px;
+    background-position: center center;
+}
+.currencyCoin:after {
+    z-index: 2;
+    position: absolute;
+    /* content: "25"; */
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font: bold 17px/37px Arial;
+    white-space: pre;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    top: 13.5px;
+    left: 13.5px;
+}
+.currencyCoinVisor {
+    z-index: 3;
+    position: relative;
+    top: -5px;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font: bold 14px/34px Arial;
+    color: #FFF;
+}
+.currency_1 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #dddddd 0, #dddddd 32.477px, #fff 32.477px, #fff 37.81px, #dddddd 37.81px, #dddddd 51px);
+}
+	
+.currency_1:before {
+    border: 8px solid #dddddd;
+    background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #C1C1C1 0, #C1C1C1 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #C1C1C1 36.903px, #C1C1C1 51px);
+}
+.currency_1:after {
+    content: "";
+    background: #dddddd;
+    color: #C1C1C1;
+}
+.currency_5 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #800000 0, #800000 32.477px, #fff 32.477px, #fff 37.81px, #800000 37.81px, #800000 51px);
+}
+.currency_5:before {
+    border: 8px solid #800000;
+    background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #6C0000 0, #6C0000 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #6C0000 36.903px, #6C0000 51px);
+}
+.currency_5:after {
+    content: "";
+    background: #800000;
+    color: #6C0000;
+}
+.currency_10 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #000099 0, #000099 32.477px, #fff 32.477px, #fff 37.81px, #000099 37.81px, #000099 51px);
+}
+.currency_10:before {
+    border: 8px solid #000099;
+    background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #00016C 0, #00016C 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #00016C 36.903px, #00016C 51px);
+}
+.currency_10:after {
+    content: "";
+    background: #000099;
+    color: #00016C;
+}
+.currency_20 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #008000 0, #008000 32.477px, #fff 32.477px, #fff 37.81px, #008000 37.81px, #008000 51px);
+}
+.currency_20:before {
+    border: 8px solid #008000;
+    background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #016C00 0, #016C00 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #016C00 36.903px, #016C00 51px);
+}
+.currency_20:after {
+    content: "";
+    background: #008000;
+    color: #016C00;
+}
+.currency_50 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #5f0085 0, #5f0085 32.477px, #fff 32.477px, #fff 37.81px, #5f0085 37.81px, #5f0085 51px);
+}
+.currency_50:before {
+  border: 8px solid #5f0085;
+  background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #3e0057 0, #3e0057 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #3e0057 36.903px, #3e0057 51px);
+}
+.currency_50:after {
+  content: "";
+  background: #5f0085;
+  color: #3e0057;
+}
+.currency_100 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #00ca9e 0, #00ca9e 32.477px, #fff 32.477px, #fff 37.81px, #00ca9e 37.81px, #00ca9e 51px);
+}
+.currency_100:before {
+  border: 8px solid #00ca9e;
+  background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #008669 0, #008669 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #008669 36.903px, #008669 51px);
+}
+.currency_100:after {
+  content: "";
+  background: #00ca9e;
+  color: #008669;
+}
+.currency_500 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #cabc00 0, #cabc00 32.477px, #fff 32.477px, #fff 37.81px, #cabc00 37.81px, #cabc00 51px);
+}
+.currency_500:before {
+  border: 8px solid #cabc00;
+  background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #918700 0, #918700 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #918700 36.903px, #918700 51px);
+}
+.currency_500:after {
+  content: "";
+  background: #cabc00;
+  color: #918700;
+}
+.currency_1000 {
+    background-image: linear-gradient(0deg, transparent 0, transparent 22.5px, #fff 22.5px, #fff 27.833px, transparent 27.833px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.477px, #fff 32.477px, #fff 37.81px, transparent 37.81px, transparent 51px), linear-gradient(120deg, #ca00b9 0, #ca00b9 32.477px, #fff 32.477px, #fff 37.81px, #ca00b9 37.81px, #ca00b9 51px);
+}
+.currency_1000:before {
+  border: 8px solid #ca00b9;
+  background-image: linear-gradient(0deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(30deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(60deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(90deg, transparent 0, transparent 23.167px, #EBEBEB 23.167px, #EBEBEB 27.167px, transparent 27.167px, transparent 51px), linear-gradient(120deg, transparent 0, transparent 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, transparent 36.903px, transparent 51px), linear-gradient(150deg, #6b0062 0, #6b0062 32.903px, #EBEBEB 32.903px, #EBEBEB 36.903px, #6b0062 36.903px, #6b0062 51px);
+}
+.currency_1000:after {
+  content: "";
+  background: #ca00b9;
+  color: #6b0062;
+}
