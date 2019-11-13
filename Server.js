@@ -120,7 +120,8 @@ app.post('/tryAposta', function(req, res) {
 
     // Checar particularidades
     if (req.body.tipo != undefined) aposta["tipo"] = req.body.tipo;
-    if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
+    if (req.body.arg != undefined)  aposta["arg"] = req.body.arg;
+    //if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
 
     console.log("[Server] aposta template = ", aposta)
     var tokenOK = M.gerarAposta(aposta);
