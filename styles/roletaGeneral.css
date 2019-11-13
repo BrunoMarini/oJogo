@@ -7,6 +7,7 @@ body {
     align-items: center;
     flex-direction: column;
     /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/184983947.jpg); */
+    background: url(poker.jpg);
     /* overflow: hidden; */
     margin: 0;
     font-family: "casinoRoyale";
@@ -14,13 +15,26 @@ body {
 }
 
 .moneyContainer {
-		width:600px;
-		height:200px;
+    border: 3px solid #cabc00;
+		width:800px;
+		height:300px;
 		margin: 0 0px;
 		padding: 0px 0;
 		text-align: center;
 		/* background-color: #014D43;
 		box-shadow: 0 0 0 5px #282828 inset, 0 0 0 10px #969696 inset, 0 0 6px rgba(255, 255, 255, 0.2); */
+}
+
+.saldoDisplay {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 36px;
+    color: #dacb00;
+}
+
+.saldoDisplay:before, .saldoDisplay:after {
+    content: " --- ";
 }
 
 .currencyCoin {

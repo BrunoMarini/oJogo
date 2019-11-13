@@ -189,6 +189,7 @@ app.all('/jquery.keyframes.min.js', (req, res) => { res.sendFile(fetchFile("/scr
 app.all('/jquery.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
 app.all('/jquery-3.3.1.slim.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
 app.all('/CasinoRoyale.ttf', (req, res) => { res.sendFile(fetchFile("/recursos/fontes/UpperEastSide.ttf")); });
+app.all('/poker.jpg', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/poker.jpg")); });
 /* Fim Manager */
 
 /* Inicio Peão casa própria */
