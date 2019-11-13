@@ -28,98 +28,151 @@
         </form>  -->
         <button id="sendApostas" onclick="sendAllApostas()">Envia minhas aposta</button>
         <div id="roletaSetContainer">
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <!-- Spinner data -->
-                        <div class="spinner">
-                            <div class="ball"><span></span></div>
-                            <div class="platebg"></div>
-                            <div class="platetop"></div>
-                            <div id="toppart" class="topnodebox">
-                                <div class="silvernode"></div>
-                                <div class="topnode silverbg"></div>
-                                <span class="top silverbg"></span>
-                                <span class="right silverbg"></span>
-                                <span class="down silverbg"></span>
-                                <span class="left silverbg"></span>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <!-- Spinner data -->
+                            <div class="spinner">
+                                <div class="ball"><span></span></div>
+                                <div class="platebg"></div>
+                                <div class="platetop"></div>
+                                <div id="toppart" class="topnodebox">
+                                    <div class="silvernode"></div>
+                                    <div class="topnode silverbg"></div>
+                                    <span class="top silverbg"></span>
+                                    <span class="right silverbg"></span>
+                                    <span class="down silverbg"></span>
+                                    <span class="left silverbg"></span>
+                                </div>
+                                <div id="rcircle" class="pieContainer">
+                                    <div class="pieBackground"></div>
+                                </div>
                             </div>
-                            <div id="rcircle" class="pieContainer">
-                                <div class="pieBackground"></div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <!-- Board data -->
-                        <table class="topazCells">
-                            <tbody>
-                                <tr>
-                                    <td rowspan="3"><div id="apostaClickable" tipo="0" class="divTableCell divTableGreen divTableSplit">0</div></td>
-                                    <td><div id="apostaClickable" tipo="3" class="divTableCell divTableRed">3</div></td>
-                                    <td><div id="apostaClickable" tipo="6" class="divTableCell divTableBlack">6</div></td>
-                                    <td><div id="apostaClickable" tipo="9" class="divTableCell divTableRed">9</div></td>
-                                    <td><div id="apostaClickable" tipo="12" class="divTableCell divTableRed">12</div></td>
-                                    <td><div id="apostaClickable" tipo="15" class="divTableCell divTableBlack">15</div></td>
-                                    <td><div id="apostaClickable" tipo="18" class="divTableCell divTableRed">18</div></td>
-                                    <td><div id="apostaClickable" tipo="21" class="divTableCell divTableRed">21</div></td>
-                                    <td><div id="apostaClickable" tipo="24" class="divTableCell divTableBlack">24</div></td>
-                                    <td><div id="apostaClickable" tipo="27" class="divTableCell divTableRed">27</div></td>
-                                    <td><div id="apostaClickable" tipo="30" class="divTableCell divTableRed">30</div></td>
-                                    <td><div id="apostaClickable" tipo="33" class="divTableCell divTableBlack">33</div></td>
-                                    <td><div id="apostaClickable" tipo="36" class="divTableCell divTableRed">36</div></td>
-                                    <td><div id="apostaClickable" tipo="coluna 3" class="divTableCell">Coluna 3</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div id="apostaClickable" tipo="2" class="divTableCell divTableBlack">2</div></td>
-                                    <td><div id="apostaClickable" tipo="5" class="divTableCell divTableRed">5</div></td>
-                                    <td><div id="apostaClickable" tipo="8" class="divTableCell divTableBlack">8</div></td>
-                                    <td><div id="apostaClickable" tipo="11" class="divTableCell divTableBlack">11</div></td>
-                                    <td><div id="apostaClickable" tipo="14" class="divTableCell divTableRed">14</div></td>
-                                    <td><div id="apostaClickable" tipo="17" class="divTableCell divTableBlack">17</div></td>
-                                    <td><div id="apostaClickable" tipo="20" class="divTableCell divTableBlack">20</div></td>
-                                    <td><div id="apostaClickable" tipo="23" class="divTableCell divTableRed">23</div></td>
-                                    <td><div id="apostaClickable" tipo="26" class="divTableCell divTableBlack">26</div></td>
-                                    <td><div id="apostaClickable" tipo="29" class="divTableCell divTableBlack">29</div></td>
-                                    <td><div id="apostaClickable" tipo="32" class="divTableCell divTableRed">32</div></td>
-                                    <td><div id="apostaClickable" tipo="35" class="divTableCell divTableBlack">35</div></td>
-                                    <td><div id="apostaClickable" tipo="coluna 2" class="divTableCell">Coluna 2</div></td>
-                                </tr>
-                                <tr>
-                                    <td><div id="apostaClickable" tipo="1" class="divTableCell divTableRed">1</div></td>
-                                    <td><div id="apostaClickable" tipo="4" class="divTableCell divTableBlack">4</div></td>
-                                    <td><div id="apostaClickable" tipo="7" class="divTableCell divTableRed">7</div></td>
-                                    <td><div id="apostaClickable" tipo="10" class="divTableCell divTableBlack">10</div></td>
-                                    <td><div id="apostaClickable" tipo="13" class="divTableCell divTableBlack">13</div></td>
-                                    <td><div id="apostaClickable" tipo="16" class="divTableCell divTableRed">16</div></td>
-                                    <td><div id="apostaClickable" tipo="19" class="divTableCell divTableRed">19</div></td>
-                                    <td><div id="apostaClickable" tipo="22" class="divTableCell divTableBlack">22</div></td>
-                                    <td><div id="apostaClickable" tipo="25" class="divTableCell divTableRed">25</div></td>
-                                    <td><div id="apostaClickable" tipo="28" class="divTableCell divTableBlack">28</div></td>
-                                    <td><div id="apostaClickable" tipo="31" class="divTableCell divTableBlack">31</div></td>
-                                    <td><div id="apostaClickable" tipo="34" class="divTableCell divTableRed">34</div></td>
-                                    <td><div id="apostaClickable" tipo="coluna 1" class="divTableCell">Coluna 1</div></td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2"><div class="divTableCell divTableVoid"></div></td>
-                                    <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 1" class="divTableCell divTableQuad">Duzia 1</div></td>
-                                    <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 2" class="divTableCell divTableQuad">Duzia 2</div></td>
-                                    <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 3" class="divTableCell divTableQuad">Duzia 3</div></td>
-                                    <td rowspan="2"><div class="divTableCell divTableVoid"></div></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="baixo" class="divTableCell divTableDouble">Baixo</div></td>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="alto" class="divTableCell divTableDouble">Alto</div></td>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="vermelho" class="divTableCell divTableDouble">Vermelho</div></td>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="preto" class="divTableCell divTableDouble">Preto</div></td>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="ímpar" class="divTableCell divTableDouble">Ímpar</div></td>
-                                    <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="par" class="divTableCell divTableDouble">Par</div></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
+                        </td>
+                        <td>
+                            <!-- Board data -->
+                            <table class="topazCells">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="3"><div id="apostaClickable" tipo="0" class="divTableCell divTableGreen divTableSplit">0</div></td>
+                                        <td><div id="apostaClickable" tipo="3" class="divTableCell divTableRed">3</div></td>
+                                        <td><div id="apostaClickable" tipo="6" class="divTableCell divTableBlack">6</div></td>
+                                        <td><div id="apostaClickable" tipo="9" class="divTableCell divTableRed">9</div></td>
+                                        <td><div id="apostaClickable" tipo="12" class="divTableCell divTableRed">12</div></td>
+                                        <td><div id="apostaClickable" tipo="15" class="divTableCell divTableBlack">15</div></td>
+                                        <td><div id="apostaClickable" tipo="18" class="divTableCell divTableRed">18</div></td>
+                                        <td><div id="apostaClickable" tipo="21" class="divTableCell divTableRed">21</div></td>
+                                        <td><div id="apostaClickable" tipo="24" class="divTableCell divTableBlack">24</div></td>
+                                        <td><div id="apostaClickable" tipo="27" class="divTableCell divTableRed">27</div></td>
+                                        <td><div id="apostaClickable" tipo="30" class="divTableCell divTableRed">30</div></td>
+                                        <td><div id="apostaClickable" tipo="33" class="divTableCell divTableBlack">33</div></td>
+                                        <td><div id="apostaClickable" tipo="36" class="divTableCell divTableRed">36</div></td>
+                                        <td><div id="apostaClickable" tipo="coluna 3" class="divTableCell">Coluna 3</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div id="apostaClickable" tipo="2" class="divTableCell divTableBlack">2</div></td>
+                                        <td><div id="apostaClickable" tipo="5" class="divTableCell divTableRed">5</div></td>
+                                        <td><div id="apostaClickable" tipo="8" class="divTableCell divTableBlack">8</div></td>
+                                        <td><div id="apostaClickable" tipo="11" class="divTableCell divTableBlack">11</div></td>
+                                        <td><div id="apostaClickable" tipo="14" class="divTableCell divTableRed">14</div></td>
+                                        <td><div id="apostaClickable" tipo="17" class="divTableCell divTableBlack">17</div></td>
+                                        <td><div id="apostaClickable" tipo="20" class="divTableCell divTableBlack">20</div></td>
+                                        <td><div id="apostaClickable" tipo="23" class="divTableCell divTableRed">23</div></td>
+                                        <td><div id="apostaClickable" tipo="26" class="divTableCell divTableBlack">26</div></td>
+                                        <td><div id="apostaClickable" tipo="29" class="divTableCell divTableBlack">29</div></td>
+                                        <td><div id="apostaClickable" tipo="32" class="divTableCell divTableRed">32</div></td>
+                                        <td><div id="apostaClickable" tipo="35" class="divTableCell divTableBlack">35</div></td>
+                                        <td><div id="apostaClickable" tipo="coluna 2" class="divTableCell">Coluna 2</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div id="apostaClickable" tipo="1" class="divTableCell divTableRed">1</div></td>
+                                        <td><div id="apostaClickable" tipo="4" class="divTableCell divTableBlack">4</div></td>
+                                        <td><div id="apostaClickable" tipo="7" class="divTableCell divTableRed">7</div></td>
+                                        <td><div id="apostaClickable" tipo="10" class="divTableCell divTableBlack">10</div></td>
+                                        <td><div id="apostaClickable" tipo="13" class="divTableCell divTableBlack">13</div></td>
+                                        <td><div id="apostaClickable" tipo="16" class="divTableCell divTableRed">16</div></td>
+                                        <td><div id="apostaClickable" tipo="19" class="divTableCell divTableRed">19</div></td>
+                                        <td><div id="apostaClickable" tipo="22" class="divTableCell divTableBlack">22</div></td>
+                                        <td><div id="apostaClickable" tipo="25" class="divTableCell divTableRed">25</div></td>
+                                        <td><div id="apostaClickable" tipo="28" class="divTableCell divTableBlack">28</div></td>
+                                        <td><div id="apostaClickable" tipo="31" class="divTableCell divTableBlack">31</div></td>
+                                        <td><div id="apostaClickable" tipo="34" class="divTableCell divTableRed">34</div></td>
+                                        <td><div id="apostaClickable" tipo="coluna 1" class="divTableCell">Coluna 1</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><div class="divTableCell divTableVoid"></div></td>
+                                        <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 1" class="divTableCell divTableQuad">Duzia 1</div></td>
+                                        <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 2" class="divTableCell divTableQuad">Duzia 2</div></td>
+                                        <td colspan="4" style="text-align:center;"><div id="apostaClickable" tipo="duzia 3" class="divTableCell divTableQuad">Duzia 3</div></td>
+                                        <td rowspan="2"><div class="divTableCell divTableVoid"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="baixo" class="divTableCell divTableDouble">Baixo</div></td>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="alto" class="divTableCell divTableDouble">Alto</div></td>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="vermelho" class="divTableCell divTableDouble">Vermelho</div></td>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="preto" class="divTableCell divTableDouble">Preto</div></td>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="ímpar" class="divTableCell divTableDouble">Ímpar</div></td>
+                                        <td colspan="2" style="text-align:center;"><div id="apostaClickable" tipo="par" class="divTableCell divTableDouble">Par</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="cashierContainer">
+            <table id="cashierTable">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="cashierSplit" class="cashierBlock">Trocar moedas</div>
+                            <script>
+                                $("#cashierSplit").droppable({
+                                    drop: (event, ui) => {
+                                        // Remover de alguma aposta se a moeda estivesse vinculada
+                                        if (ui.draggable.attr("place") != undefined) {
+                                            rmFromAposta(ui.draggable.attr("place"), ui.draggable.attr("valor"));
+                                        }
+                                        var valor = parseInt(ui.draggable.attr("valor"));
+                                        // Criar mais moedas de valores menores que somem o antigo
+                                        switch (valor) {
+                                            case 1: return;
+                                            case 5: for (var _ = 0; _ < 5; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_1' valor='1'><p class='currencyCoinVisor'>1₿</p></div>");
+                                            }; break;
+                                            case 10: for (var _ = 0; _ < 2; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_5' valor='5'><p class='currencyCoinVisor'>5₿</p></div>");
+                                            }; break;
+                                            case 20: for (var _ = 0; _ < 2; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_10' valor='10'><p class='currencyCoinVisor'>10₿</p></div>");
+                                            }; break;
+                                            case 50: for (var _ = 0; _ < 2; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_20' valor='20'><p class='currencyCoinVisor'>20₿</p></div>");
+                                            }; $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_10' valor='10'><p class='currencyCoinVisor'>10₿</p></div>"); break;
+                                            case 100: for (var _ = 0; _ < 5; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_20' valor='20'><p class='currencyCoinVisor'>20₿</p></div>");
+                                            }; break;
+                                            case 500: for (var _ = 0; _ < 5; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_100' valor='100'><p class='currencyCoinVisor'>100₿</p></div>");
+                                            }; break;
+                                            case 1000: for (var _ = 0; _ < 2; _++) {
+                                                $("#cashierSplit").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_500' valor='500'><p class='currencyCoinVisor'>500₿</p></div>");
+                                            }; break;
+                                            default: console.log("Som weird sh!t been goin on"); break;
+                                        }
+                                        // Remove the old coin
+                                        ui.draggable.remove();
+                                        // Make sure the new coins are draggable
+                                        $( "div[id='currencyCoin']" ).draggable();
+                                    }
+                                })
+                            </script>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <script>
             $("div[id='apostaClickable']").on("click", function(event) {

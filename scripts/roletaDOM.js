@@ -71,7 +71,7 @@ function enviarAposta(apostaData) {
     // Iniciar uma espera assincrona pelo resultado da aposta
     if (!aguardandoRespostas) {
         reqRespostas = new XMLHttpRequest();
-        reqRespostas.open('POST','/replyAposta',true); // set this to POST if you would like
+        reqRespostas.open('POST','/replyAposta',true);
         reqRespostas.addEventListener('load',onLoadReply);
         reqRespostas.addEventListener('error',onErrorReply);
         reqRespostas.send();
@@ -81,101 +81,26 @@ function enviarAposta(apostaData) {
 
 function onLoadReply() {
     var response = this.responseText;
-    //alert("Servidor respondeu: " + response);
     var parsedResponse = JSON.parse(response);
+    // Armazenar resposta para os outros elementos tratarem
     document.latestParsedResponse = parsedResponse;
+    // Verificar qual o número sorteado
     var numSorteio = parseInt(parsedResponse[0]["valorSorteio"]["_numero"]);
+    // Girar a roleta para aquele número
     document.spinTo(numSorteio);
-    //reqRespostas = undefined;
-    //requestSaldo(false);
 }
 
 function onErrorReply() {
+    // Oof
     alert("fudeo");
 }
 
 // ================================================== FRONT ROLETA ==================================================
 
-var numorder = [
-    0,
-    32,
-    15,
-    19,
-    4,
-    21,
-    2,
-    25,
-    17,
-    34,
-    6,
-    27,
-    13,
-    36,
-    11,
-    30,
-    8,
-    23,
-    10,
-    5,
-    24,
-    16,
-    33,
-    1,
-    20,
-    14,
-    31,
-    9,
-    22,
-    18,
-    29,
-    7,
-    28,
-    12,
-    35,
-    3,
-    26
-  ];
-  var numred = [
-    32,
-    19,
-    21,
-    25,
-    34,
-    27,
-    36,
-    30,
-    23,
-    5,
-    16,
-    1,
-    14,
-    9,
-    18,
-    7,
-    12,
-    3
-  ];
-  var numblack = [
-    15,
-    4,
-    2,
-    17,
-    6,
-    13,
-    11,
-    8,
-    10,
-    24,
-    33,
-    20,
-    31,
-    22,
-    29,
-    28,
-    35,
-    26
-  ];
-  var numgreen = [0];
+var numorder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+var numred = [32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3];
+var numblack = [15, 4, 2, 17, 6, 13, 11, 8, 10, 24, 33, 20, 31, 22, 29, 28, 35, 26];
+var numgreen = [0];
 
 document.numberLoc = [];
 
@@ -219,18 +144,14 @@ function createWheel() {
         $(newHold).appendTo(newSlice);
         $(newSlice).appendTo(rinner);
     }
-
-    //console.log(document.numberLoc);
 }
 
 function addToAposta(tipo, valor) { console.log("Add " + valor + " to " + tipo.toLowerCase()); document.apostaStates[tipo.toLowerCase()] += parseInt(valor); }
 function rmFromAposta(tipo, valor) { console.log("Rm " + valor + " to " + tipo.toLowerCase()); document.apostaStates[tipo.toLowerCase()] -= parseInt(valor); }
 function sendAllApostas() {
-    console.log("a");
+    // Não tratar nada se estiver aguardando a resposta do servidor
     if (aguardandoRespostas) return;
     document.replyTokens = {};
-    // Remover chips colocados na mesa
-    //$("div[placedCoin=true]").remove();
     var template = {
         "duzia 1": {tipo:"duzia", arg:1},
         "duzia 2": {tipo:"duzia", arg:2},
@@ -274,29 +195,22 @@ function reloadCurrency() {
     var pos = 0;
     while (saldo > 0) {
         while (saldo < valores[pos]) pos++;
-        //console.log("appendando moeda de " + valores[pos]);
         cuoins[pos]++;
-        //$("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[pos] + "' valor='" + valores[pos] + "'>" + valores[pos] + "₿</div>");
         saldo -= valores[pos];
     }
     while (pos < cuoins.length - 1) {
         cuoins[pos]--;
-        //console.log("removendo moeda de " + valores[pos]);
         saldo = valores[pos];
         pos++;
         while (saldo > 0) {
             while (saldo < valores[pos]) pos++;
-            //console.log("appendando moeda de " + valores[pos]);
             cuoins[pos]++;
-            //$("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[pos] + "' valor='" + valores[pos] + "'>" + valores[pos] + "₿</div>");
             saldo -= valores[pos];
-            //console.log("new saldo = " + saldo);
         }
     }
     for (var i in cuoins) {
         for (var c = 0; c < cuoins[i]; c++) {
             $("div[id='saldoContainer']").append("<div id='currencyCoin' class='ui-widget-content currencyCoin currency_" + valores[i] + "' valor='" + valores[i] + "'><p class='currencyCoinVisor'>" + valores[i] + "₿</p></div>");
-            //console.log("added moeda ", valores[i])
         }
     }
     $( "div[id='currencyCoin']" ).draggable();
