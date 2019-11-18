@@ -86,6 +86,7 @@ class ApostaRoleta extends Aposta {
     }
     
     verificarAposta(resultado) {
+        console.log("[Aposta] Eval-ing " + this._condição + " for resultado = ", resultado);
         var res = (eval(this._condição));
         if (res) {
             console.log("[Aposta] Correta!")
@@ -121,13 +122,13 @@ function ApostaRoletaAuto(params) {
         "vermelho" : {"condição": "resultado.isVermelho",                                                                                                               "multiplicador": 2 },
         "alto"     : {"condição": "resultado.isAlto",                                                                                                                   "multiplicador": 2 },
         "baixo"    : {"condição": "resultado.isBaixo",                                                                                                                  "multiplicador": 2 },
-        "duzia"    : {"condição": "resultado.between(" + ((params["duzia"] - 1) * 12 + 1) + ", " + (params["duzia"] * 12) + ")",                                        "multiplicador": 3 },
-        "coluna"   : {"condição": "resultado.numero % 3 == " + params["coluna"] % 3,                                                                                    "multiplicador": 3 },
-        "linha"    : {"condição": "resultado.between(" + ((params["linha"] - 1) * 6 + 1) + ", " + (params["linha"] * 6) + ")",                                          "multiplicador": 6 },
-        "canto"    : {"condição": "resultado.numero in [" + params["min"] + ", " + (params["min"] + 1) + ", " + (params["min"] + 3) + ", " + (params["min"] + 4) + "]", "multiplicador": 9 },
-        "rua"      : {"condição": "resultado.between(" + ((params["rua"] - 1) * 3 + 1) + ", " + (params["rua"] * 3) + ")",                                              "multiplicador": 12},
-        "split"    : {"condição": "resultado.numero == " + params["num1"] + " || resultado.numero == " + params["num2"],                                                "multiplicador": 18},
-        "valor"    : {"condição": "resultado.numero == " + params["numero"],                                                                                            "multiplicador": 36}
+        "duzia"    : {"condição": "resultado.between(" + ((params["arg"] - 1) * 12 + 1) + ", " + (params["arg"] * 12) + ")",                                            "multiplicador": 3 },
+        "coluna"   : {"condição": "resultado.numero % 3 == " + params["arg"] % 3,                                                                                       "multiplicador": 3 },
+        "linha"    : {"condição": "resultado.between(" + ((params["arg"] - 1) * 6 + 1) + ", " + (params["arg"] * 6) + ")",                                              "multiplicador": 6 },
+        "canto"    : {"condição": "resultado.numero in [" + params["arg"] + ", " + (params["arg"] + 1) + ", " + (params["arg"] + 3) + ", " + (params["arg"] + 4) + "]", "multiplicador": 9 },
+        "rua"      : {"condição": "resultado.between(" + ((params["arg"] - 1) * 3 + 1) + ", " + (params["arg"] * 3) + ")",                                              "multiplicador": 12},
+        //"split"    : {"condição": "resultado.numero == " + params["num1"] + " || resultado.numero == " + params["num2"],                                                "multiplicador": 18},
+        "valor"    : {"condição": "resultado.numero == " + params["arg"],                                                                                               "multiplicador": 36}
     }
     let autopar = Auto[params["tipo"]];
     for (var k in params) { autopar[k] = params[k]; }

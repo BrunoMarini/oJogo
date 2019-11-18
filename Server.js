@@ -30,8 +30,8 @@ function fetchFile(filename) { return path.join(__dirname + filename); }
 // Requests
 app.post('/logarUsuario', function(req, res) {
     console.log("[Server] Body =", req.body);
-    var usuario = req.body.usuario;
-    var senha = req.body.senha;
+    var usuario = req.body.email_login;
+    var senha = req.body.senha_login;
 
     var login = M.logarJogador(usuario, senha);
     if (login) {
@@ -120,7 +120,8 @@ app.post('/tryAposta', function(req, res) {
 
     // Checar particularidades
     if (req.body.tipo != undefined) aposta["tipo"] = req.body.tipo;
-    if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
+    if (req.body.arg != undefined)  aposta["arg"] = req.body.arg;
+    //if (req.body.numero != undefined) aposta["numero"] = req.body.numero;
 
     console.log("[Server] aposta template = ", aposta)
     var tokenOK = M.gerarAposta(aposta);
@@ -160,12 +161,19 @@ app.post('/replyAposta', function(req, res) {
 
 //================ Page require ================ 
 
-// Require peão da casa propria
+/* Inicio Login */
+
+app.all('/login.css', (req, res) => { res.sendFile(fetchFile("/styles/login.css")); });
+
+/* Fim login */
 
 /* Inicio Roleta */
 app.all('/roletaDOM.js', function(req, res){
     res.sendFile(fetchFile("/scripts/roletaDOM.js"));
 });
+app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaDisco.css")); });
+app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
+app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaGeneral.css")); });
 /* Fim Roleta */
 
 /* Inicio Manager */
@@ -180,6 +188,12 @@ app.all('/Jogos.js', function(req, res){
 app.all('/Apostas.js', function(req, res){
     res.sendFile(fetchFile("/scripts/Apostas.js"));
 });
+
+app.all('/jquery.keyframes.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.keyframes.min.js")); });
+app.all('/jquery.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
+app.all('/jquery-3.3.1.slim.min.js', (req, res) => { res.sendFile(fetchFile("/scripts/jquery.min.js")); });
+app.all('/CasinoRoyale.ttf', (req, res) => { res.sendFile(fetchFile("/recursos/fontes/UpperEastSide.ttf")); });
+app.all('/poker.jpg', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/poker.jpg")); });
 /* Fim Manager */
 
 /* Inicio Peão casa própria */

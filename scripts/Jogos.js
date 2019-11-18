@@ -52,7 +52,7 @@ class Jogo {
         var resultados = [];
         for (var i in this._apostas) {
             //console.log("[Jogos] Processando aposta", this._apostas[i])
-            resultados.push({"aposta": this._apostas[i], "resultado": this._apostas[i].aplicarGanhos(resultado)});
+            resultados.push({"valorSorteio": resultado, "aposta": this._apostas[i], "resultado": this._apostas[i].aplicarGanhos(resultado)});
         }
         this.__M__.processDone(resultados);
         return resultados;

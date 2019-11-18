@@ -101,16 +101,22 @@ class Manager {
                 var data = [];
                 for (var ke in elements) {
                     var obj = {
-                        "apostaOriginal" : elements[ke]["aposta"].valor,
+                        "apostaOriginal" : {},//elements[ke]["aposta"].valor,
                     }
+                    // for (var key in elements[ke]["aposta"]) {
+                    //     console.log("[Manager] Key: " + key + "; val: ", elements[ke]["aposta"][key]);
+                    // }
+                    obj["apostaOriginal"]["fetchToken"] = elements[ke]["aposta"]["fetchToken"];
+                    obj["apostaOriginal"]["valor"] = elements[ke]["aposta"]["_valor"];
                     for (var key in elements[ke]) {
                         if (!(["aposta"].includes(key))) {
-                            console.log("[Manager] Key = " + key + ", val = ", elements[ke][key]);
+                            //console.log("[Manager] Key = " + key + ", val = ", elements[ke][key]);
                             obj[key] = elements[ke][key];
                         }
                     }
                     data.push(obj);
                 } 
+                console.log("[Manager] Replying", data);
                 response.send(JSON.stringify(data));
                 answered++;
             }

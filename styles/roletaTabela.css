@@ -1,0 +1,51 @@
+@font-face { font-family: "casinoRoyale"; src: url("./CasinoRoyale.ttf") format('truetype'); } 
+
+table.topazCells {
+    border: 4px solid #ccb800;
+    background-color: #0d3d27;
+    text-align: center;
+    border-collapse: collapse;
+}
+table.topazCells td, table.topazCells th {
+    border: 1px solid #ccb800;
+    text-align: center;
+}
+table.topazCells .divTableBody .divTableCell {
+    font-size: 21px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.divTableCell {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 21px;
+    width: 100px;
+    height: 50px;
+    color: #FFFFFF;
+    vertical-align: middle;
+    padding-top: 25px;
+}
+.divTableDouble {
+    width:200px;
+}
+.divTableQuad {
+    width:400px;
+}
+.divTableSplit {
+    height:207px;
+    vertical-align: middle;
+}
+.divTableRed {
+      background: #a90329;
+}
+.divTableBlack {
+      background: #000000;
+}
+.divTableGreen {
+      background: #9ecb2d;
+}
+td[rowspan="4"] {
+    background: #9ecb2d;
+}
+.divTableVoid {
+    border-width: 0px;
+}
