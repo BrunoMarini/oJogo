@@ -1,0 +1,85 @@
+<!-- <meta charset="UTF-8">
+<html>
+    <body>
+        <title>Login</title>
+        <h>Login</h>
+        <form action='http://localhost:8080/logarUsuario' method='POST'>
+            <div>
+                <b>usuario</b><input type="text" name="usuario" required></br>
+                <b>senha</b><input type="password" name="senha" required></br>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </body>
+</html> -->
+<html>
+    <link rel="stylesheet" href="assets/login.css" type="text/css" />
+
+    <div class="container" >
+        <a class="links" id="paracadastro"></a>
+        <a class="links" id="paralogin"></a>
+        
+        <div class="content">      
+        <!--FORMULÁRIO DE LOGIN-->
+        <div id="login">
+            <form action='http://localhost:8080/logarUsuario' method='POST'> 
+            <h1>Login</h1> 
+            <p> 
+                <label for="email_login">Seu e-mail</label>
+                <input id="email_login" name="email_login" required="required" type="text" placeholder="algo123@provedor.com"/>
+            </p>
+            
+            <p> 
+                <label for="senha_login">Sua senha</label>
+                <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
+            </p>
+            
+            <!-- <p> 
+                <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+                <label for="manterlogado">Manter-me logado</label>
+            </p> -->
+            
+            <p> 
+                <input type="submit" value="Logar" /> 
+            </p>
+            
+            <p class="link">
+                Ainda não tem conta?
+                <a href="#paracadastro">Cadastre-se</a>
+            </p>
+            </form>
+        </div>
+
+        <!--FORMULÁRIO DE CADASTRO-->
+        <div id="cadastro">
+            <form method="post" action=""> 
+            <h1>Cadastro</h1> 
+            
+            <p> 
+                <label for="nome_cad">Seu nome</label>
+                <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Ricardo Milos" />
+            </p>
+            
+            <p> 
+                <label for="email_cad">Seu e-mail</label>
+                <input id="email_cad" name="email_cad" required="required" type="email" placeholder="algo123@provedor.com"/> 
+            </p>
+            
+            <p> 
+                <label for="senha_cad">Sua senha</label>
+                <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234 (fácil demais!)"/>
+            </p>
+            
+            <p> 
+                <input type="submit" value="Cadastrar"/> 
+            </p>
+            
+            <p class="link">  
+                Já tem conta?
+                <a href="#paralogin"> Ir para Login </a>
+            </p>
+            </form>
+        </div>
+    </div>
+  </div> 
+</html>
