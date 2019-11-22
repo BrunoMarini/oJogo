@@ -42,75 +42,75 @@
 
         
 
-        <div class="container" >
+        <!--<div class="container" >-->
             <a class="links" id="paracadastro"></a>
             <a class="links" id="paralogin"></a>
             
             <div class="content">      
-            <!--FORMULÁRIO DE LOGIN-->
-            <div id="login">
-                <form action='http://localhost:8080/logarUsuario' method='POST'> 
-                <h1>Login</h1> 
-                <p> 
-                    <label for="email_login">Seu e-mail</label>
-                    <input id="email_login" name="email_login" required="required" type="text" placeholder="algo123@provedor.com"/>
-                </p>
-                
-                <p> 
-                    <label for="senha_login">Sua senha</label>
-                    <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
-                </p>
-                
-                <!-- <p> 
-                    <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
-                    <label for="manterlogado">Manter-me logado</label>
-                </p> -->
-                
-                <p> 
-                    <input type="submit" value="Logar" /> 
-                </p>
-                
-                <p class="link">
-                    Ainda não tem conta?
-                    <a href="#paracadastro">Cadastre-se</a>
-                </p>
-                </form>
-            </div>
+             <!--FORMULÁRIO DE LOGIN-->
+                <div id="login">
+                    <form action='http://localhost:8080/logarUsuario' method='POST'> 
+                    <h1>Login</h1> 
+                    <p> 
+                        <label for="email_login">Seu e-mail</label>
+                        <input id="email_login" name="email_login" required="required" type="text" placeholder="algo123@provedor.com"/>
+                    </p>
+                    
+                    <p> 
+                        <label for="senha_login">Sua senha</label>
+                        <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
+                    </p>
+                    
+                    <!-- <p> 
+                        <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
+                        <label for="manterlogado">Manter-me logado</label>
+                    </p> -->
+                    
+                    <p> 
+                        <input type="submit" value="Logar" /> 
+                    </p>
+                    
+                    <p class="link">
+                        Ainda não tem conta?
+                        <a href="#paracadastro">Cadastre-se</a>
+                    </p>
+                    </form>
+                </div>
 
-            <!--FORMULÁRIO DE CADASTRO-->
-            <div id="cadastro">
-                <form method="post" action=""> 
-                <h1>Cadastro</h1> 
-                
-                <p> 
-                    <label for="nome_cad">Seu nome</label>
-                    <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Ricardo Milos" />
-                </p>
-                
-                <p> 
-                    <label for="email_cad">Seu e-mail</label>
-                    <input id="email_cad" name="email_cad" required="required" type="email" placeholder="algo123@provedor.com"/> 
-                </p>
-                
-                <p> 
-                    <label for="senha_cad">Sua senha</label>
-                    <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234 (fácil demais!)"/>
-                </p>
-                
-                <p> 
-                    <input type="submit" value="Cadastrar"/> 
-                </p>
-                
-                <p class="link">  
-                    Já tem conta?
-                    <a href="#paralogin"> Ir para Login </a>
-                </p>
-                </form>
-            </div>
-        </div>
+                <!--FORMULÁRIO DE CADASTRO-->
+                <div id="cadastro">
+                    <form method="post" action=""> 
+                    <h1>Cadastro</h1> 
+                    
+                    <p> 
+                        <label for="nome_cad">Seu nome</label>
+                        <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Ricardo Milos" />
+                    </p>
+                    
+                    <p> 
+                        <label for="email_cad">Seu e-mail</label>
+                        <input id="email_cad" name="email_cad" required="required" type="email" placeholder="algo123@provedor.com"/> 
+                    </p>
+                    
+                    <p> 
+                        <label for="senha_cad">Sua senha</label>
+                        <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234 (fácil demais!)"/>
+                    </p>
+                    
+                    <p> 
+                        <input type="submit" value="Cadastrar"/> 
+                    </p>
+                    
+                    <p class="link">  
+                        Já tem conta?
+                        <a href="#paralogin"> Ir para Login </a>
+                    </p>
+                    </form>
+                </div>
+             </div>
     </div> 
-    </div>
-    <link href="assets/style.css" rel="stylesheet">
+    <!--</div>
+    <link href="assets/style.css" rel="stylesheet">-->
 
     <br>
     <br>
@@ -162,14 +162,14 @@
 
     <div id="sobre" class="row" style="text-align:center;">
         <div class="column">
-            <h1 style="text-align: center;">Casino BCM</h1><br>
+            <h1 style="text-align: center;">Sobre nós</h1><br>
             <h3 style="text-align: justify;">
             <p>Somos um trio de amigos que adora desenvolver programas, desde os mais simples até os mais complexos.</p>
             <p>No intuito de desenvolver um conjunto de jogos, desenvolvemos este site para hospedar alguns desses projetos.
                 É só realizar um cadastro simples e você já estará pronto para se divertir, ou quem sabe, passar raiva.
             </p>
             </h3><br>
-            <img id="imgTrio" src="images/trio.jpg"><br>
+            <img id="imgTrio" src="images/trio.jpg"><br><br>
             <p> Bruno Guilherme (à esquerda), Marcos Aurélio (ao centro) e Caio Lima (à direita), compõem essa equipe auto-intitulada
                 de BCM, surgindo, a partir disso, o nome do <i>Casino</i>.
             </p>
@@ -192,7 +192,7 @@
     <br>
     <br>
 
-    <div id="contato" class="row" style="text-align:center;">
+    <div id="contato" style="text-align:center;">
         <!--<div class="column">
             <img class="thumbnail image-one" src="images/img-01.jpg" alt="image one" style="width:100%">
             <button class="animate-me-button">Animate me!</button>
@@ -206,7 +206,7 @@
             <button class="me-too-button">Animate me too!</button>
         </div>-->
         <p><h2 style="text-align: center;">Desenvolvido por:</h2></p><br>
-        <p><h3 style="text-align: center;">BCM</h3></p><br>
+        <p><h3 style="text-align: center;">BCM</h3></p>
     </div>
 </body>
 

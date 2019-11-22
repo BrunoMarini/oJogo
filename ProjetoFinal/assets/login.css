@@ -20,6 +20,7 @@ a.links{
 
 /* content que contem os formulários */
 .content{
+  margin-top: 200px;
   width: 500px;
   margin: 0px auto;
   position: relative;   
