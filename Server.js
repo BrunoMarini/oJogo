@@ -221,6 +221,7 @@ app.all('/tick.mp3', function(req, res){
 
 /* Inicio Slots */
 app.all('/slotsDOM.js', function(req, res){ res.sendFile(fetchFile("/scripts/slotsDOM.js")); });
+app.all('/slotmachine.min.js', function(req, res){ res.sendFile(fetchFile("/scripts/slotmachine.min.js")); });
 app.all('/slots_style.css', function(req, res){ res.sendFile(fetchFile("/styles/slots_style.css")); });
 app.all('/slots_index.css', function(req, res){ res.sendFile(fetchFile("/styles/slots_index.css")); });
 app.use('/slotsImages', express.static('recursos/imagens/slots'));

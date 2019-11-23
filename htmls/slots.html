@@ -3,32 +3,11 @@
         <!-- <link rel="stylesheet" href="styles/slots_index.css" type="text/css" /> -->
         <link rel="stylesheet" href="slots_style.css" type="text/css" />
         <link rel="stylesheet" href="slots_index.css" type="text/css" />
+        <script src="jquery.min.js"></script>
+        <script src="slotmachine.min.js"></script>
+        <script src="slotsDOM.js"></script>
     </head>
     <body>
-        <!-- <div class="slotmachinebody">
-            <div class="content">
-                    <div>
-                    <div id="casino1" class="slotMachine" style="margin-left: -65px; overflow: hidden;">
-                        <div class="slotMachineContainer" style="transition: all 1s ease-in-out 0s; transform: matrix(1, 0, 0, 1, 0, -100);">
-                            <div class="slot slot6"></div><div class="slot slot1"></div><div class="slot slot2"></div><div class="slot slot3"></div><div class="slot slot4"></div><div class="slot slot5"></div><div class="slot slot6"></div><div class="slot slot1"></div>
-                        </div>
-                    </div>
-                    <div id="casino2" class="slotMachine" style="overflow: hidden;">
-                        <div class="slotMachineContainer" style="transition: all 1s ease-in-out 0s; transform: matrix(1, 0, 0, 1, 0, -200);">
-                            <div class="slot slot6"></div><div class="slot slot1"></div><div class="slot slot2"></div><div class="slot slot3"></div><div class="slot slot4"></div><div class="slot slot5"></div><div class="slot slot6"></div><div class="slot slot1"></div>
-                        </div>
-                    </div>
-                    <div id="casino3" class="slotMachine" style="overflow: hidden;">
-                        <div class="slotMachineContainer" style="transition: all 1s ease-in-out 0s; transform: matrix(1, 0, 0, 1, 0, -300);">
-                            <div class="slot slot6"></div><div class="slot slot1"></div><div class="slot slot2"></div><div class="slot slot3"></div><div class="slot slot4"></div><div class="slot slot5"></div><div class="slot slot6"></div><div class="slot slot1"></div>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-justified" role="group">
-                        <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Shuffle!</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div id="casino" style="padding-top:50px;">
             <div class="content">
                 <div>
@@ -42,11 +21,38 @@
                     <div class="slotMachineContainer" style="transition: all 1s ease-in-out 0s; transform: matrix(1, 0, 0, 1, 0, -300);"><div class="slot slot6"></div><div class="slot slot1"></div><div class="slot slot2"></div><div class="slot slot3"></div><div class="slot slot4"></div><div class="slot slot5"></div><div class="slot slot6"></div><div class="slot slot1"></div></div></div>
             
                     <div class="btn-group btn-group-justified" role="group">
-                        <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Shuffle!</button>
-                        <button id="casinoStop" type="button" class="btn btn-primary btn-lg">Stop!</button>
+                        <div id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Shuffle!</button>
+                        <!-- <div id="casinoStop" type="button" class="btn btn-primary btn-lg">Stop!</button> -->
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+                // $(".casinoShuffle").addEventListener('click', () => {
+                //     alert("Foi")
+                //   count = 3;
+                //   mCasino1.shuffle(9999);
+                //   mCasino2.shuffle(9999);
+                //   mCasino3.shuffle(9999);
+                // });
+                $("div[id='casinoShuffle']").on("click", (event) => {
+                    startRoll();
+                });
+                
+                // $(".casinoStop").addEventListener('click', () => {
+                //   switch(count) {
+                //     case 3:
+                //       mCasino1.stop();
+                //       break;
+                //     case 2:
+                //       mCasino2.stop();
+                //       break;
+                //     case 1:
+                //       mCasino3.stop();
+                //       break;
+                //   }
+                //   count--;
+                // });                
+        </script>
     </body>
 </html>
