@@ -164,3 +164,45 @@ class WinWheel extends Jogo {
 
 exports.WinWheel = WinWheel;
 // =================================  END WIN WHEEL  =================================
+
+// ================================= BEGIN SLOTS =================================
+class Slots extends Jogo {
+	
+	constructor(mgr) {
+        super("slots", mgr);
+        this._maxslots = 6;
+    }
+    
+    addAposta(aposta) {
+        console.log("aposta: ", aposta);
+        this._apostas.push(aposta);
+        console.log("vetor: ", this._apostas);
+        // Calcular resultado imediatamente
+        setTimeout(this.calcularRodada.bind(this));
+        return aposta;
+    }
+
+    getPRandomSlot() { //Pctgs = 50 20 15 10 4 1
+        let grad = 1000;
+        let roll = Math.floor(Math.random() * grad);
+        let pctgs = [50, 20, 15, 10, 4, 1].map((v) => {return v * grad/100.});
+        slot = 0;
+        while (roll > 0) { roll -= pctgs[++slot]; }
+        return slot;
+    }
+
+	calcularRodada(){
+        let slot1 = this.getPRandomSlot();
+        let slot2 = this.getPRandomSlot();
+        let slot3 = this.getPRandomSlot();
+        console.log("[Jogos] Generated slots [" + slot1 + ", " + slot2 + ", " + slot3 + "]");
+        var resultado = this._apostas[0].aplicarGanhos(slot1, slot2, slot3);
+        this.__M__.processDone([{"aposta":this._apostas[0], "resultado":resultado}]);
+        //let pos = this.sortear();
+		//console.log("Result = " + pos + "; valor = " + chances[pos]['premio']);
+		//return {"posicao": pos, "recompensa": chances[pos]['premio']};	
+    }
+}
+
+exports.Slots = Slots;
+// =================================  END SLOTS  =================================

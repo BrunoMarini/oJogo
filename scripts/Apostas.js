@@ -168,7 +168,7 @@ class ApostaBlackjack extends Aposta {
     }
 }
 
-// ================================ APOSTA BLACKJACK ================================
+// ================================ APOSTA WINWHEEL ================================
 class ApostaWinWheel extends Aposta {
     constructor(params){
         super(params["valor"], params["jogadorPtr"]);
@@ -186,8 +186,6 @@ class ApostaWinWheel extends Aposta {
         this._jogador.addDinheiro( premio );
         return {"premio": premio, "posicao": pos};
     }
-
-
 }
 
 function ExpectedValueWinWheel() {
@@ -203,6 +201,47 @@ function ApostaWinWheelAuto(params) {
     return new ApostaWinWheel(params);
 }
 
+
+
+// ================================ APOSTA SLOTS ================================
+class ApostaSlots extends Aposta {
+    constructor(params){
+        super(params["valor"], params["jogadorPtr"]);
+        this._valor = params["valor"];
+    }
+
+    aplicarGanhos(slot1, slot2, slot3) {
+        //let apostaVal = 36 * (slot1 - 1) + 6 * (slot2 - 1) + slot3 - 1;
+        let apostaVal = "" + slot1 + "" + slot2 + "" + slot3
+        let multi = ((val) => {
+            switch (val) {
+                case "111": return 2;
+                case "222": return 3;
+                case "333": return 5;
+                case "444": return 10;
+                case "555": return 20;
+                case "666": return 50;
+                default: return 3 * (val.match(/6/g)||[]).length;
+            };
+        })(apostaVal);
+        let premio = this._valor * multi;
+        console.log("[Aposta] Aplicando + " + premio + " para " + this._jogador.nome)
+        this._jogador.addDinheiro( premio );
+        return {"premio": premio, "slot1":slot1, "slot2":slot2, "slot3":slot3};
+    }
+}
+
+// function ExpectedValueSlots() {
+//     var s = 0;
+//     for (var k in chancesWinWheel) { s += chancesWinWheel[k]['premio'] * chancesWinWheel[k]['chance'] / 100.0; }
+//     console.log("[DEBUG] Expected value on WinWheel = " + s);
+//     return s;
+// }
+
+function ApostaSlotsAuto(params) {
+    return new ApostaSlots(params);
+}
+
 //exports.Roleta = ApostaRoleta;
 exports.RoletaAuto = ApostaRoletaAuto;
 exports.RRoleta = ResultadoRoleta;
@@ -210,3 +249,4 @@ exports.Blackjack = ApostaBlackjack;
 exports.PrecosTabelados = precosTabelados;
 //exports.WinWheel = ApostaWinWheel;
 exports.WinWheelAuto = ApostaWinWheelAuto;
+exports.SlotsAuto = ApostaSlotsAuto;

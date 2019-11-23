@@ -51,8 +51,8 @@ app.get('/escolheSala', function(req, res) {
     res.sendFile(fetchFile("/htmls/escolheSala.html"));
 });
 
-// Escolhar salas individuais
-app.get('/escolharSalaIndividual', function(req, res){
+// Escolher salas individuais
+app.get('/escolheSalaIndividual', function(req, res){
     var jogo = req.query.jogo;
 
     var cookies = parseCookies(req);
@@ -64,6 +64,9 @@ app.get('/escolharSalaIndividual', function(req, res){
     switch (jogo){
         case "winWheel":
             res.sendFile(fetchFile("/htmls/winWheel.html"));
+            break;
+        case "slots":
+            res.sendFile(fetchFile("/htmls/slots.html"));
             break;
         default:
             res.send("404");
@@ -164,9 +167,7 @@ app.post('/replyAposta', function(req, res) {
 // Require peão da casa propria
 
 /* Inicio Roleta */
-app.all('/roletaDOM.js', function(req, res){
-    res.sendFile(fetchFile("/scripts/roletaDOM.js"));
-});
+app.all('/roletaDOM.js', function(req, res){ res.sendFile(fetchFile("/scripts/roletaDOM.js")); });
 app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaDisco.css")); });
 app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
 app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaGeneral.css")); });
@@ -218,8 +219,16 @@ app.all('/tick.mp3', function(req, res){
 });
 /* Fim Peão casa própria */
 
+/* Inicio Slots */
+app.all('/slotsDOM.js', function(req, res){ res.sendFile(fetchFile("/scripts/slotsDOM.js")); });
+app.all('/slots_style.css', function(req, res){ res.sendFile(fetchFile("/styles/slots_style.css")); });
+app.all('/slots_index.css', function(req, res){ res.sendFile(fetchFile("/styles/slots_index.css")); });
+app.use('/slotsImages', express.static('recursos/imagens/slots'));
+/* Fim Slots */
+
 //=============== End page require ============== 
 
+app.use(express.static('styles'));
 
 // Listen on port
 const port = 8080;
