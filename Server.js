@@ -27,6 +27,12 @@ app.use(express.static('htmls'));
 
 function fetchFile(filename) { return path.join(__dirname + filename); }
 
+app.all('/sairSala', function (req, res){
+
+    console.log("SAIR");    
+
+});
+
 // Requests
 app.post('/logarUsuario', function(req, res) {
     console.log("[Server] Body =", req.body);
@@ -175,6 +181,26 @@ app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/role
 app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
 app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaGeneral.css")); });
 /* Fim Roleta */
+
+/* Inicio Dardo */
+
+app.all('/styleDardo.css', function(req, res){
+    res.sendFile(fetchFile("/styles/styleDardo.css"));
+});
+
+app.all('/backDardo.js', function(req, res){
+    res.sendFile(fetchFile("/scripts/backDardo.js"));
+});
+
+app.all('/dardo.png', function(req, res){
+    res.sendFile(fetchFile("/recursos/imagens/dardo.png"));
+});
+
+app.all('/target.png', function(req, res){
+    res.sendFile(fetchFile("/recursos/imagens/target.png"));
+});
+
+/* Fim Dardo */
 
 /* Inicio Manager */
 app.all('/Jogador.js', function(req, res){

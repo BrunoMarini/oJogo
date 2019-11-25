@@ -164,3 +164,32 @@ class WinWheel extends Jogo {
 
 exports.WinWheel = WinWheel;
 // =================================  END WIN WHEEL  =================================
+
+// ================================= BEGIN DARDO =================================
+class Dardo extends Jogo {
+	
+	constructor(mgr) {
+        super("dardo", mgr);
+    }
+    /*
+    addAposta(aposta) {
+        console.log("aposta: ", aposta);
+        this._apostas.push(aposta);
+        console.log("vetor: ", this._apostas);
+        // Calcular resultado imediatamente
+        setTimeout(this.calcularRodada.bind(this));
+        return aposta;
+    }
+
+	calcularRodada(){
+        let rolado = Math.random();
+        var resultado = this._apostas[0].aplicarGanhos(rolado);
+        this.__M__.processDone([{"aposta":this._apostas[0], "resultado":resultado}]);
+        //let pos = this.sortear();
+		//console.log("Result = " + pos + "; valor = " + chances[pos]['premio']);
+		//return {"posicao": pos, "recompensa": chances[pos]['premio']};	
+    }*/
+}
+
+exports.Dardo = Dardo;
+// =================================  END DARDO  =================================

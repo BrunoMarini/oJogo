@@ -1,5 +1,6 @@
 const precosTabelados = {
     "winWheel": 50
+    "dardo": 50
 }
     //{"jogo": winWheel, "valor": 500}
 const chancesWinWheel = [
