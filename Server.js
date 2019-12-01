@@ -3,7 +3,7 @@ const app = express();
 const M = new (require("./scripts/Manager.js")).MGR();
 const D = new (require("./scripts/Banco.js")).B();
 
-M.init();
+//M.init();
 
 const path = require('path');
 
@@ -172,18 +172,28 @@ app.post('/cadastrarNovoUsuario', function(req, res){
     var senha = req.body.senha_cad;
     var saldo = 1000;
 
+
     D.inserir(nome, email, senha, saldo);
     
 });
 
 app.post('/loginDeUsuario', function(req, res){
     console.log("[ CU Server] Body =", req.body);
-    var email = req.body.email_cad;
-    var senha = req.body.senha_cad;
+    var email = req.body.email_login;
+    var senha = req.body.senha_login;
 
-    D.logar(email, senha);
+    D.logar(email, senha, res).then((resultado)=>{
 
-    res.sendFile(fetchFile("/htmls/jogos.html"));
+        if(resultado){
+            res.set("Set-Cookie", "usuario="+email);
+            res.sendFile(fetchFile("/htmls/jogos.html")); 
+        }else{
+            res.set("Set-Cookie", "usuario="+undefined);
+            res.sendFile(fetchFile("/htmls/login.html"));
+            console.log("Deu ruim!");
+        }
+    });
+
 });
 
 

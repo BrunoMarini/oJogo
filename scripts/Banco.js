@@ -11,7 +11,7 @@ class Banco {
 
     }
 
-    inserir(n, e, p, s){
+    inserir(n, e, p){
        
         MongoClient.connect(url, MONGO_CONFIG, function(err, db) {
             if (err) throw err;
@@ -23,7 +23,7 @@ class Banco {
 
                 if(result == null){
 
-                    dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s}, function(err, res){
+                    dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p}, function(err, res){
                         if(err) throw err;
                        
                         if(res.insertedCount == 1){
@@ -43,27 +43,47 @@ class Banco {
         });
     }    
 
-    logar(e, s){
+    async logar(e, s){
+        
+        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        
+        var dbo = db.db("Clientes");
+        var res = await dbo.collection("Cadastros").findOne({email: e});
+        
+        db.close();
 
-        console.log("I will try the login");
-
-        MongoClient.connect(url, MONGO_CONFIG, function(err, db) {
-            if (err) throw err;
-
-            var dbo = db.db("Clientes");
-            dbo.collection("Cadastros").findOne({email: e}, function(err, result) {
-                
-                if (err) throw err;          
-                console.log(result);
-                if(result.senha == s){
-
-                    console.log("È ISTO");
-
-                }
-            });
-        });
+        if(s == res.senha)
+            return true;
+        else
+            return false;
     }
 
+    atualizarSaldo(e, v){
+
+        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        
+        var dbo = db.db("Clientes");
+        var res = await dbo.collection("Cadastros").findOne({email: e});
+        
+        var atualizar = 
+        {   
+            _id: res._id,
+            nome: res.nome,
+            email: res.email,
+            senha: res.senha,
+            saldo: (res.saldo + v)
+        }
+
+        dbo.collection("Cadastros").update(atualizar);
+
+        db.close();
+
+        if(s == res.senha)
+            return true;
+        else
+            return false;
+
+    }
 }
 
 exports.B = Banco;
