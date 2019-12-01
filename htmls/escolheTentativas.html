@@ -1,18 +1,18 @@
 <meta charset="UTF-8">
 <html>
     <head>
-        <title>Sala</title>
+        <title>Quantidade de dardos</title>
         <link rel="stylesheet" href="styleJogos.css" type="text/css" />
     </head>
     <body>
         <div id="panel">
                 <img id="imgLogo" src="logo.png" width="60px" height="60px">
-                <h1 style="float: left; margin-left: 30px;" id="escolheJogo">Escolha de sala</h1>
+                <h1 style="float: left; margin-left: 30px;" id="escolheJogo">Escolha a quantidade de dardos</h1>
         </div>
         <div style="margin-top: 100px;">
-        <form action='http://localhost:8080/entrarSala' method='GET'>
+        <form action='http://localhost:8080/entrarDardo' method='GET'>
             <div>
-                <input type="text" name="sala"  placeholder="ex.: 0 (valor inteiro!)" required></br>
+                <input type="text" id="qtd" name="qtd" placeholder="ex.: 1 (valor inteiro!)" required></br>
                 <button type="submit">Entrar</button>
             </div>
         </form>

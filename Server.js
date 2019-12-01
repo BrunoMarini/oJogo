@@ -4,6 +4,8 @@ const M = new (require("./scripts/Manager.js")).MGR();
 M.init();
 const path = require('path');
 
+const vFichaD = 10;
+
 // JSON via post
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -29,7 +31,7 @@ function fetchFile(filename) { return path.join(__dirname + filename); }
 
 app.all('/sairSala', function (req, res){
 
-    console.log("SAIR");    
+    console.log("SAIR");
 
 });
 
@@ -71,9 +73,26 @@ app.get('/escolharSalaIndividual', function(req, res){
         case "winWheel":
             res.sendFile(fetchFile("/htmls/winWheel.html"));
             break;
+        case "dardo":
+            res.sendFile(fetchFile("/htmls/escolheTentativas.html"));
+            break;
         default:
             res.send("404");
     }
+});
+
+// Entrar dardo
+app.get('/entrarDardo', function(req, res) {
+    var qtd = parseInt(req.query.qtd);
+
+    var cookies = parseCookies(req);
+    var usuario = cookies['usuario'];
+    //res.set("Set-Cookie", "sala="+sala);
+    //res.send();
+    if((qtd != NaN) && (qtd*vFichaD <= M.obterSaldo(usuario)))
+        res.sendFile(fetchFile("/htmls/dart.html"));
+    else
+        res.sendFile(fetchFile("/htmls/escolheTentativas.html"));
 });
 
 // Entrar na sala
@@ -172,6 +191,18 @@ app.post('/replyAposta', function(req, res) {
 app.all('/login.css', (req, res) => { res.sendFile(fetchFile("/styles/login.css")); });
 
 /* Fim login */
+
+/* Inicio jogos */
+
+app.all('/logo.png', function(req, res){
+    res.sendFile(fetchFile("/recursos/imagens/logo.png"));
+});
+
+app.all('/styleJogos.css', function(req, res){
+    res.sendFile(fetchFile("/styles/styleJogos.css"));
+});
+
+/* Fim jogos */
 
 /* Inicio Roleta */
 app.all('/roletaDOM.js', function(req, res){

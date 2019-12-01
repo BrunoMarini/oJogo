@@ -1,5 +1,7 @@
 //https://www.w3schools.com/graphics/tryit.asp?filename=trygame_gravity_game
 
+const vFicha = 10;
+
 window.addEventListener("load", function(){
 
     var canvas = document.getElementById('canv');
