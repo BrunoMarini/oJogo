@@ -141,8 +141,15 @@ app.post('/reqSaldo', function(req, res) {
     // Parsear dados do request
     var cookies = parseCookies(req);
     var usuario = cookies['usuario'];
-
-    res.send( "" + M.obterSaldo(usuario) );
+    //M.obterSaldo(usuario);
+    
+    D.saldo(usuario).then((resultado)=>{
+        console.log("[SERVER] " + resultado);
+        res.send( "" + resultado);
+        //return resultado;
+    });
+    
+    
 });
 
 // Requisições de resultado de apostas
@@ -186,6 +193,7 @@ app.post('/loginDeUsuario', function(req, res){
 
         if(resultado){
             res.set("Set-Cookie", "usuario="+email);
+            M.newLogin(email, email);
             res.sendFile(fetchFile("/htmls/jogos.html")); 
         }else{
             res.set("Set-Cookie", "usuario="+undefined);

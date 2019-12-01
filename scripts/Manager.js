@@ -1,7 +1,7 @@
 const Jogador = require("./Jogador.js");
 const Jogos = require("./Jogos.js");
 const Apostas = require("./Apostas.js");
-const Banco = require("./Banco.js");
+const D = new (require("./Banco.js")).B();
 
 class Manager {
     constructor() {
@@ -50,6 +50,10 @@ class Manager {
     //     this.acessarMesa("roleta", 0).addJogador(jog3);
     // }
 
+    newLogin(nome, email){
+        this._jogadores[email] = new Jogador.Jogador(nome, email);
+    }
+
     gerarAposta(params) {
         console.log("[Manager] Gerando aposta para " + params["jogador"] + " em " + params["jogo"] + ", sala " + params["mesa"] + " (valor = " + params["valor"] + ", token = " + params["authToken"] + ")");
         var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta(
@@ -73,7 +77,9 @@ class Manager {
     }
 
     obterSaldo(jogador) {
-        if (jogador in this._jogadores) return this._jogadores[jogador].dinheiro;
+        var x;
+        
+        return x;
     }
 
     addWaitlist(jogador, jogo, mesa, token, response) {

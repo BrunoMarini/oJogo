@@ -1,3 +1,5 @@
+const D = new (require("./Banco.js")).B();
+
 const Apostas = require("./Apostas.js");
 const red = {
     "roleta": Apostas.RoletaAuto,
@@ -6,11 +8,8 @@ const red = {
 }
 
 class Jogador {
-    constructor(nome, senha, dinheiro, UUID) {
+    constructor(nome, UUID) {
         this._nome = nome;
-        this._senha = senha;
-        if (dinheiro == undefined) dinheiro = 100;
-        this._dinheiro = dinheiro;
         if (UUID == undefined) UUID = nome //+ Math.floor(Math.random() * 10000);
         this._UUID = UUID;
         this._salaAtiva = undefined;
@@ -27,14 +26,7 @@ class Jogador {
     set salaAtiva(s) { this._salaAtiva = s; }
     get salaAtiva() { return this._salaAtiva; }
 
-    addDinheiro(dinheiro) { this._dinheiro += dinheiro; }
-    rmDinheiro(dinheiro) { 
-        if (this._dinheiro < dinheiro) return undefined;
-        this._dinheiro -= dinheiro; 
-        return this._dinheiro;
-    }
-
-    apostar(params) {
+    async apostar(params) {
         // Checando token de autenticação
         if (params["authToken"] != this._authToken) return undefined;
         console.log("[Jogador] Autenticado");
@@ -42,7 +34,9 @@ class Jogador {
         if (params["valor"] == undefined || params["jogo"] in Apostas.PrecosTabelados) params["valor"] = Apostas.PrecosTabelados[params["jogo"]];
         console.log("[Jogador] Novo valor = " + params["valor"]);
         // Checando se tem saldo
-        if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
+        //if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
+        var s = await D.saldo(this.UUID);
+        console.log("ASUHASOIUDH" + s);
         console.log("[Jogador] Saldo OK");
         // Gerando aposta
         console.log("[Jogador] Gerando aposta no valor de " + params["valor"] + " em " + params["jogo"] + (params["tipo"] != undefined ? (" (tipo " + params["tipo"] + ")") : ""));

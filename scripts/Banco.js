@@ -52,13 +52,30 @@ class Banco {
         
         db.close();
 
-        if(s == res.senha)
-            return true;
+        if(res.senha != null){
+            if(s == res.senha)
+                return true;
+            
+            return false;
+        }
+        return false;
+    }
+
+    async saldo(e){
+        
+        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        
+        var dbo = db.db("Clientes");
+        var res = await dbo.collection("Cadastros").findOne({email: e});
+        
+        db.close();
+        if(res != null)
+            return res.saldo;
         else
             return false;
     }
 
-    atualizarSaldo(e, v){
+    async atualizarSaldo(e, v){
 
         var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
         
