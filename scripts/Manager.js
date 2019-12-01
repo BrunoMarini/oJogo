@@ -1,6 +1,7 @@
 const Jogador = require("./Jogador.js");
 const Jogos = require("./Jogos.js");
 const Apostas = require("./Apostas.js");
+const Banco = require("./Banco.js");
 
 class Manager {
     constructor() {
@@ -34,6 +35,9 @@ class Manager {
     acessarMesa(jogo, mesa) { return this._mesas[jogo][mesa]; }
 
     init() {
+        
+        //var banco = new Banco.create();
+
         var jog1 = new Jogador.Jogador("asdf", "asdf");
         this.acrescentarJogador(jog1);
         console.log("[Manager] Gerei um jogador com UUID " + jog1.UUID);

@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const M = new (require("./scripts/Manager.js")).MGR();
+const D = new (require("./scripts/Banco.js")).B();
+
 M.init();
+
 const path = require('path');
 
 // JSON via post
@@ -27,21 +30,21 @@ app.use(express.static('htmls'));
 
 function fetchFile(filename) { return path.join(__dirname + filename); }
 
-// Requests
-app.post('/logarUsuario', function(req, res) {
-    console.log("[Server] Body =", req.body);
-    var usuario = req.body.email_login;
-    var senha = req.body.senha_login;
+// // Requests
+// app.post('/logarUsuario', function(req, res) {
+//     console.log("[Server] Body =", req.body);
+//     var usuario = req.body.email_login;
+//     var senha = req.body.senha_login;
 
-    var login = M.logarJogador(usuario, senha);
-    if (login) {
-        res.set("Set-Cookie", "usuario="+usuario);
-        res.sendFile(fetchFile("/htmls/jogos.html"));
-    } else {
-        res.set("Set-Cookie", "usuario="+undefined);
-        res.sendFile(fetchFile("/htmls/login.html"));
-    }
-});
+//     var login = M.logarJogador(usuario, senha);
+//     if (login) {
+//         res.set("Set-Cookie", "usuario="+usuario);
+//         res.sendFile(fetchFile("/htmls/jogos.html"));
+//     } else {
+//         res.set("Set-Cookie", "usuario="+undefined);
+//         res.sendFile(fetchFile("/htmls/login.html"));
+//     }
+// });
 
 // Escolher o número da sala
 app.get('/escolheSala', function(req, res) {
@@ -125,7 +128,7 @@ app.post('/tryAposta', function(req, res) {
 
     console.log("[Server] aposta template = ", aposta)
     var tokenOK = M.gerarAposta(aposta);
-    if (tokenOK != undefined) {
+    if (tokenOK) {
         res.send(JSON.stringify({sucesso: true, texto:"Aposta efetuada!", token:tokenOK}));
     } else {
         res.send(JSON.stringify({sucesso: false, texto:"A aposta não pode ser feita, cheque seu saldo..."}));
@@ -159,6 +162,31 @@ app.post('/replyAposta', function(req, res) {
     M.addWaitlist(usuario, jogo, sala, tokenAposta, res);
 });
 
+//============= Requires de Banco =============
+
+app.post('/cadastrarNovoUsuario', function(req, res){
+    
+    console.log("[Server] Body =", req.body);
+    var nome = req.body.nome_cad;
+    var email = req.body.email_cad;
+    var senha = req.body.senha_cad;
+    var saldo = 1000;
+
+    D.inserir(nome, email, senha, saldo);
+    
+});
+
+app.post('/loginDeUsuario', function(req, res){
+    console.log("[ CU Server] Body =", req.body);
+    var email = req.body.email_cad;
+    var senha = req.body.senha_cad;
+
+    D.logar(email, senha);
+
+    res.sendFile(fetchFile("/htmls/jogos.html"));
+});
+
+
 //================ Page require ================ 
 
 /* Inicio Login */
@@ -177,6 +205,10 @@ app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/ro
 /* Fim Roleta */
 
 /* Inicio Manager */
+app.all('/Banco.js', function(req, res){
+    res.sendFile(fetchFile("/scripts/Banco.js"));
+});
+
 app.all('/Jogador.js', function(req, res){
     res.sendFile(fetchFile("/scripts/Jogador.js"));
 });
