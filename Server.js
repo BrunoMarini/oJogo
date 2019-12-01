@@ -148,8 +148,6 @@ app.post('/reqSaldo', function(req, res) {
         res.send( "" + resultado);
         //return resultado;
     });
-    
-    
 });
 
 // Requisições de resultado de apostas
@@ -181,7 +179,6 @@ app.post('/cadastrarNovoUsuario', function(req, res){
 
 
     D.inserir(nome, email, senha, saldo);
-    
 });
 
 app.post('/loginDeUsuario', function(req, res){

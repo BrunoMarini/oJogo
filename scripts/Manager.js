@@ -6,7 +6,7 @@ const D = new (require("./Banco.js")).B();
 class Manager {
     constructor() {
         this._mesas = {
-            "roleta": [new Jogos.Roleta(this)],
+            "roleta": [new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this)],
 			"winWheel": [new Jogos.WinWheel(this)]
         }
         this._jogadores = {}
@@ -54,11 +54,11 @@ class Manager {
         this._jogadores[email] = new Jogador.Jogador(nome, email);
     }
 
-    gerarAposta(params) {
+    async gerarAposta(params) {
         console.log("[Manager] Gerando aposta para " + params["jogador"] + " em " + params["jogo"] + ", sala " + params["mesa"] + " (valor = " + params["valor"] + ", token = " + params["authToken"] + ")");
-        var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta(
-            this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params)
-        );
+        var ap = await this.acessarMesa(params["jogo"], params["mesa"]).getJogador(params["jogador"]).apostar(params);
+        //console.log("[Manager] AP:", ap);
+        var r = this.acessarMesa(params["jogo"], params["mesa"]).addAposta( ap );
         if (r != undefined) {
             var token = this.acrescentarObjeto(r);
             r.fetchToken = token;

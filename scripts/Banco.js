@@ -1,7 +1,7 @@
 //Constantes Base de Dados
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const url = 'mongodb://localhost:27017';
+const url = "mongodb+srv://dbAdmin:tsan172%23@clustertep-ks1u5.gcp.mongodb.net/test?retryWrites=true&w=majority"//'mongodb://localhost:27017';
 const dbName = 'Clientes';
 const MONGO_CONFIG = {useUnifiedTopology: true, useNewUrlParser: true};
 
@@ -11,7 +11,7 @@ class Banco {
 
     }
 
-    inserir(n, e, p){
+    inserir(n, e, p, s){
        
         MongoClient.connect(url, MONGO_CONFIG, function(err, db) {
             if (err) throw err;
@@ -23,7 +23,7 @@ class Banco {
 
                 if(result == null){
 
-                    dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p}, function(err, res){
+                    dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s}, function(err, res){
                         if(err) throw err;
                        
                         if(res.insertedCount == 1){
@@ -91,14 +91,14 @@ class Banco {
             saldo: (res.saldo + v)
         }
 
-        dbo.collection("Cadastros").update(atualizar);
+        dbo.collection("Cadastros").update({email:e}, atualizar);
 
         db.close();
 
-        if(s == res.senha)
-            return true;
-        else
-            return false;
+        // if(s == res.senha)
+        //     return true;
+        // else
+        //     return false;
 
     }
 }

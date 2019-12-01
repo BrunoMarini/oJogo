@@ -356,7 +356,7 @@ window.onload = function() {
         } else {
             alert ("Não foi dessa vez...");
         }
-        requestSaldo(false);
+        requestSaldo(true);
         replaceCoins(document.latestParsedResponse);
         $("div[id='currencyCoin']").draggable("enable");
         aguardandoRespostas = false;

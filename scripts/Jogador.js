@@ -36,8 +36,9 @@ class Jogador {
         // Checando se tem saldo
         //if (this.rmDinheiro(params["valor"]) == undefined) return undefined;
         var s = await D.saldo(this.UUID);
-        console.log("ASUHASOIUDH" + s);
+        //console.log("ASUHASOIUDH" + s);
         console.log("[Jogador] Saldo OK");
+        var _ = await D.atualizarSaldo(this.UUID, -params["valor"]);
         // Gerando aposta
         console.log("[Jogador] Gerando aposta no valor de " + params["valor"] + " em " + params["jogo"] + (params["tipo"] != undefined ? (" (tipo " + params["tipo"] + ")") : ""));
         params["jogadorPtr"] = this;
