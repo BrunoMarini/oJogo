@@ -144,7 +144,7 @@ app.post('/reqSaldo', function(req, res) {
     //M.obterSaldo(usuario);
     
     D.saldo(usuario).then((resultado)=>{
-        console.log("[SERVER] " + resultado);
+        //console.log("[SERVER] " + resultado);
         res.send( "" + resultado);
         //return resultado;
     });

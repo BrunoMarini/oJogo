@@ -1,13 +1,21 @@
 //Constantes Base de Dados
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const url = "mongodb+srv://dbAdmin:tsan172%23@clustertep-ks1u5.gcp.mongodb.net/test?retryWrites=true&w=majority"//'mongodb://localhost:27017';
+
+const fs = require('fs');
+const path = require('path');
+function fetchFile(filename) { return path.join(__dirname + filename); }
+
+var authdata = JSON.parse(fs.readFileSync(fetchFile("/mongo_auth.json")));
+
+const url = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
+
 const dbName = 'Clientes';
 const MONGO_CONFIG = {useUnifiedTopology: true, useNewUrlParser: true};
 
 class Banco {
 
-    constructor(){
+    constructor() {
 
     }
 
@@ -69,6 +77,7 @@ class Banco {
         var res = await dbo.collection("Cadastros").findOne({email: e});
         
         db.close();
+
         if(res != null)
             return res.saldo;
         else
