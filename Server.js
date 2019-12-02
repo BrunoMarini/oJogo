@@ -224,6 +224,8 @@ app.all('/exitRoom', function(req, res){
 /* Inicio Login */
 
 app.all('/login.css', (req, res) => { res.sendFile(fetchFile("/styles/login.css")); });
+app.all('/images/logo.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/logo.png")); });
+app.all('/styleJogos.css', (req, res) => { res.sendFile(fetchFile("/styles/styleJogos.css")); });
 
 /* Fim login */
 
