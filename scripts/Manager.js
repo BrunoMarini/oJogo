@@ -80,7 +80,7 @@ class Manager {
     sairDeMesa(jogador, jogo, mesa) {
         let jogadorPtr = this._jogadores[jogador];
         // Remover o jogador da sala anterior
-        if (jogadorPtr.salaAtiva != undefined) jogadorPtr.salaAtiva.rmJogador(jogador);
+        if (jogadorPtr != undefined && jogadorPtr.salaAtiva != undefined) jogadorPtr.salaAtiva.rmJogador(jogador);
     }
 
     deslogar(jogador, jogo, mesa) {
