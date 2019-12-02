@@ -285,6 +285,8 @@ app.all('/tick.mp3', function(req, res){
 
 
 // Listen on port
-const port = 8080;
+let port = process.env.PORT;
+if (port == undefined) port = 8080;
+
 app.listen(port);
 console.log("[Server] Listening on port " + port);
