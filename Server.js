@@ -195,7 +195,7 @@ app.post('/loginDeUsuario', function(req, res){
             res.sendFile(fetchFile("/htmls/jogos.html")); 
         }else{
             res.set("Set-Cookie", "usuario="+undefined);
-            res.sendFile(fetchFile("/htmls/login.html"));
+            res.sendFile(fetchFile("/htmls/index.html"));
             console.log("Deu ruim!");
         }
     });
@@ -226,6 +226,10 @@ app.all('/exitRoom', function(req, res){
 app.all('/login.css', (req, res) => { res.sendFile(fetchFile("/styles/login.css")); });
 app.all('/images/logo.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/logo.png")); });
 app.all('/styleJogos.css', (req, res) => { res.sendFile(fetchFile("/styles/styleJogos.css")); });
+app.all('/styleIndex.css', (req, res) => { res.sendFile(fetchFile("/styles/styleIndex.css")); });
+app.all('/mainIndex.js', (req, res) => { res.sendFile(fetchFile("/scripts/mainIndex.js")); });
+app.all('/images/logoIndex.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/logoIndex.png")); });
+app.all('/images/trio.jpg', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/trio.jpg")); });
 
 /* Fim login */
 
