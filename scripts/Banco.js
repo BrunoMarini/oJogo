@@ -24,36 +24,38 @@ class Banco {
 
     }
 
-    inserir(n, e, p, s){
+    async inserir(n, e, p, s){
        
-        MongoClient.connect(mongourl, MONGO_CONFIG, function(err, db) {
-            if (err) throw err;
+        var db = await MongoClient.connect(mongourl, MONGO_CONFIG);
+        //MongoClient.connect(mongourl, MONGO_CONFIG, function(err, db) {
+        //if (err) throw err;
 
-            var dbo = db.db("Clientes");
-            dbo.collection("Cadastros").findOne({email: e}, function(err, result) {
-                
-                if (err) throw err;          
+        var dbo = db.db("Clientes");
+        var result = await dbo.collection("Cadastros").findOne({email: e});
+        //dbo.collection("Cadastros").findOne({email: e}, function(err, result) {
+            
+        //if (err) throw err;          
 
-                if(result == null){
-
-                    dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s}, function(err, res){
-                        if(err) throw err;
-                       
-                        if(res.insertedCount == 1){
-                            console.log("Cadastrado com Sucesso!");
-                        }else{
-                            console.log("Erro ao Cadastrar (erro no mongodb!)");
-                        }
-                    });
-
-                    db.close();
-                    
-                }else{    
-                    console.log("Erro ao Cadastrar (email existente!)");
-                    db.close();
-                }
-            });
-        });
+        if(result == null){
+            var res = dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s});//, function(err, res){
+            //if(err) throw err;
+            if(res.insertedCount == 1){
+                console.log("Cadastrado com Sucesso!");
+                db.close();
+                return {"sucesso": true};
+            }else{
+                console.log("Erro ao Cadastrar (erro no mongodb!)");
+                db.close();
+                return {"sucesso": false, "motivo":"erro no banco de dados"};
+            }
+            //});
+        }else{    
+            console.log("Erro ao Cadastrar (email existente!)");
+            db.close();
+            return {"sucesso": false, "motivo":"email já existente"};
+        }
+        //});
+        //});
     }    
 
     async logar(e, s){

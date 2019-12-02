@@ -180,8 +180,7 @@ app.post('/cadastrarNovoUsuario', function(req, res){
     var senha = req.body.senha_cad;
     var saldo = 1000;
 
-
-    D.inserir(nome, email, senha, saldo);
+    D.inserir(nome, email, senha, saldo).then((resultado) => res.send(JSON.stringify(resultado)));
 });
 
 app.post('/loginDeUsuario', function(req, res){
@@ -189,8 +188,7 @@ app.post('/loginDeUsuario', function(req, res){
     var email = req.body.email_login;
     var senha = req.body.senha_login;
 
-    D.logar(email, senha, res).then((resultado)=>{
-
+    D.logar(email, senha).then((resultado)=>{
         if(resultado){
             res.set("Set-Cookie", "usuario="+email);
             M.newLogin(email, email);

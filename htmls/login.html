@@ -13,70 +13,91 @@
     </body>
 </html> -->
 <html>
-    <link rel="stylesheet" href="login.css" type="text/css" />
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
+    </head>
+    <body>
+        <link rel="stylesheet" href="login.css" type="text/css" />
 
-    
-    <div class="container" >
-        <a class="links" id="paracadastro"></a>
-        <a class="links" id="paralogin"></a>
         
-        <div class="content">      
+        <div class="container" >
+            <a class="links" id="paracadastro"></a>
+            <a class="links" id="paralogin"></a>
+            
+            <div class="content">      
 
-        <!--FORMULÁRIO DE LOGIN-->
-        <div id="login">
-            <form action='/loginDeUsuario' method='POST'> 
-            <h1>Login</h1> 
-            <p> 
-                <label for="email_login">Seu e-mail</label>
-                <input id="email_login" name="email_login" required="required" type="text" placeholder="contato@htmlecsspro.com"/>
-            </p>
-            
-            <p> 
-                <label for="senha_login">Sua senha</label>
-                <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
-            </p>
-            
-            <p> 
-                <input type="submit" value="Logar" /> 
-            </p>
-            
-            <p class="link">
-                Ainda não tem conta?
-                <a href="#paracadastro">Cadastre-se</a>
-            </p>
-            </form>
-        </div>
+            <!--FORMULÁRIO DE LOGIN-->
+            <div id="login">
+                <form action='/loginDeUsuario' method='POST'> 
+                <h1>Login</h1> 
+                <p> 
+                    <label for="email_login">Seu e-mail</label>
+                    <input id="email_login" name="email_login" required="required" type="text" placeholder="contato@htmlecsspro.com"/>
+                </p>
+                
+                <p> 
+                    <label for="senha_login">Sua senha</label>
+                    <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
+                </p>
+                
+                <p> 
+                    <input type="submit" value="Logar" /> 
+                </p>
+                
+                <p class="link">
+                    Ainda não tem conta?
+                    <a href="#paracadastro">Cadastre-se</a>
+                </p>
+                </form>
+            </div>
 
-        <!--FORMULÁRIO DE CADASTRO-->
-        <div id="cadastro">
-            <form id="formCadastro" method="POST" action="/cadastrarNovoUsuario"> 
-            <h1>Cadastro</h1> 
-            
-            <p> 
-                <label for="nome_cad">Seu nome</label>
-                <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Luiz Augusto" />
-            </p>
-            
-            <p> 
-                <label for="email_cad">Seu e-mail</label>
-                <input id="email_cad" name="email_cad" required="required" type="email" placeholder="contato@htmlecsspro.com"/> 
-            </p>
-            
-            <p> 
-                <label for="senha_cad">Sua senha</label>
-                <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234"/>
-            </p>
-            
-            <p> 
-                <input type="submit" value="Cadastrar"/> 
-            </p>
-            
-            <p class="link">  
-                Já tem conta?
-                <a href="#paralogin"> Ir para Login </a>
-            </p>
-            </form>
+            <!--FORMULÁRIO DE CADASTRO-->
+            <div id="cadastro">
+                <form id="formCadastro" method="POST" action="/cadastrarNovoUsuario"> 
+                <h1>Cadastro</h1> 
+                
+                <p> 
+                    <label for="nome_cad">Seu nome</label>
+                    <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Luiz Augusto" />
+                </p>
+                
+                <p> 
+                    <label for="email_cad">Seu e-mail</label>
+                    <input id="email_cad" name="email_cad" required="required" type="email" placeholder="contato@htmlecsspro.com"/> 
+                </p>
+                
+                <p> 
+                    <label for="senha_cad">Sua senha</label>
+                    <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234"/>
+                </p>
+                
+                <p> 
+                    <input type="submit" value="Cadastrar"/> 
+                </p>
+                
+                <p class="link">  
+                    Já tem conta?
+                    <a href="#paralogin"> Ir para Login </a>
+                </p>
+                </form>
+            </div>
         </div>
-    </div>
-  </div> 
+    </div> 
+    <script> 
+            // wait for the DOM to be loaded 
+            $(document).ready(function() { 
+                // bind 'myForm' and provide a simple callback function 
+                $('form[id=formCadastro]').ajaxForm((response) => { 
+                    var resp = JSON.parse(response);
+                    var res = resp["sucesso"];
+                    if (res) {
+                        alert("Cadastro realizado com sucesso!");
+                    } else {
+                        alert("O cadastro não pôde ser concluido (" + resp["motivo"] + "!)");
+                    }
+                }); 
+            }); 
+        </script>
+    </body>
 </html>
