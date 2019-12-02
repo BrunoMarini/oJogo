@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+* {
+    font-family: 'Questrial', sans-serif;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+body{
+    background-color: rgba(179, 0, 250, 0.4);
+}
+
+#panel {
+    left: 0;
+    top: 0;
+    margin: 10;
+    float: left;
+    position: fixed;
+}
+
+#imgLogo{
+    float:left;
+    position: relative;
+}
+
+#jogos_panel {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#jogos_t,
+.jogos_table,
+.jogos_saldo_table {
+    border-right: 5px;
+    border-color: #9A0000;
+}
+
+.jogos_table {
+    border-right-style: solid;
+}
+
+.jogos_saldo_table {
+    border-bottom-style: solid;
+}
+
+#jogos_t {
+    border-style: solid;
+}
+
+button {
+    border-spacing: 10px;
+    width: 130px;
+    height: 50px;
+    border: 5px solid rgb(0, 0, 0);
+    background-color: rgb(202, 107, 107);
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgba(aqua, 0);
+    animation: 0.25s ease-in-out 0s buttonAnimOut;
+    position: relative;
+}
+
+button:hover{
+    animation: 0.25s ease-in-out 0s buttonAnimIn;
+    border: 10px solid rgb(202, 107, 107);
+    background-image: linear-gradient(-90deg, rgb(236, 227, 227), rgb(209, 0, 0));
+    border-radius: 20px;
+}
+
+@keyframes buttonAnimIn {
+    0% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg, rgb(236, 227, 227), rgb(209, 0, 0));
+        border-radius: 10px;
+    }
+    20%{
+        background-image: linear-gradient(60deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    40%{
+        background-image: linear-gradient(30deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    60%{
+        background-image: linear-gradient(-30deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    80%{
+        background-image: linear-gradient(-60deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    100% {
+        border: 10px solid rgb(202, 107, 107);
+        background-image: linear-gradient(-90deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+        border-radius: 20px;
+    }
+}
+
+@keyframes buttonAnimOut {
+    0% {
+        border: 10px solid rgb(202, 107, 107);
+        background-image: linear-gradient(-90deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+        border-radius: 20px;
+    }
+    20%{
+        background-image: linear-gradient(-60deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    40%{
+        background-image: linear-gradient(-30deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    60%{
+        background-image: linear-gradient(30deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    80%{
+        background-image: linear-gradient(60deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+    }
+    100% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg,  rgb(236, 227, 227), rgb(209, 0, 0));
+        border-radius: 10px;
+    }
+}
