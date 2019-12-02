@@ -252,6 +252,7 @@ app.all('/styleIndex.css', (req, res) => { res.sendFile(fetchFile("/styles/style
 app.all('/mainIndex.js', (req, res) => { res.sendFile(fetchFile("/scripts/mainIndex.js")); });
 app.all('/images/logoIndex.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/logoIndex.png")); });
 app.all('/images/trio.jpg', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/trio.jpg")); });
+app.all('/favicon.ico', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/favicon.ico")); });
 
 /* Fim login */
 

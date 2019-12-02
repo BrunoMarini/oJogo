@@ -33,7 +33,7 @@ header {
     position: relative;
     height: 500px;
   }
-  
+
   .header__bg {
     z-index: -1;
     position: absolute;
