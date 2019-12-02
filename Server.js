@@ -206,13 +206,16 @@ app.all('/exitRoom', function(req, res){
     // Parsear dados do request
     var cookies = parseCookies(req);
     var usuario = cookies['usuario'];
-    var roomData = cookies['roomData'].split("|");
-    var sala = roomData[1];
-    var authToken = roomData[2];
-    var jogo = roomData[0];
+    var roomData = cookies['roomData'];
+    if (roomData != undefined) {
+        roomData = roomData.split("|");
+        var sala = roomData[1];
+        var authToken = roomData[2];
+        var jogo = roomData[0];
 
-    // Desautenticar usuário daquela mesa
-    M.sairDeMesa(usuario, jogo, sala);
+        // Desautenticar usuário 
+        M.sairDeMesa(usuario, jogo, sala);
+    }
 
     // Enviar página padrão de jogos
     res.sendFile(fetchFile("/htmls/jogos.html")); 
@@ -222,20 +225,21 @@ app.all('/logout', function(req, res){
     // Parsear dados do request
     var cookies = parseCookies(req);
     var usuario = cookies['usuario'];
-    var roomData = cookies['roomData'].split("|");
-    var sala = roomData[1];
-    var authToken = roomData[2];
-    var jogo = roomData[0];
+    var roomData = cookies['roomData'];
+    if (roomData != undefined) {
+        roomData = roomData.split("|");
+        var sala = roomData[1];
+        var authToken = roomData[2];
+        var jogo = roomData[0];
 
-    // Desautenticar usuário 
-    M.deslogar(usuario, jogo, sala);
+        // Desautenticar usuário 
+        M.deslogar(usuario, jogo, sala);
+    }
 
     // Enviar página padrão de index
     res.set("Set-Cookie", "roomData="+undefined);
     res.sendFile(fetchFile("/htmls/index.html")); 
 });
-
-
 
 //================ Page require ================ 
 
@@ -320,7 +324,6 @@ app.all('/tick.mp3', function(req, res){
 /* Fim Peão casa própria */
 
 //=============== End page require ============== 
-
 
 // Listen on port
 let port = process.env.PORT;
