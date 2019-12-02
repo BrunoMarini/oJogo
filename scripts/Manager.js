@@ -83,6 +83,10 @@ class Manager {
         if (jogadorPtr.salaAtiva != undefined) jogadorPtr.salaAtiva.rmJogador(jogador);
     }
 
+    deslogar(jogador, jogo, mesa) {
+        this.sairDeMesa(jogador, jogo, mesa);
+        delete(this._jogadores[jogador]);
+    }
 
     obterSaldo(jogador) {
         var x;
