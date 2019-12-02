@@ -77,6 +77,13 @@ class Manager {
         return this.acessarMesa(jogo, mesa).addJogador(jogadorPtr);
     }
 
+    sairDeMesa(jogador, jogo, mesa) {
+        let jogadorPtr = this._jogadores[jogador];
+        // Remover o jogador da sala anterior
+        if (jogadorPtr.salaAtiva != undefined) jogadorPtr.salaAtiva.rmJogador(jogador);
+    }
+
+
     obterSaldo(jogador) {
         var x;
         

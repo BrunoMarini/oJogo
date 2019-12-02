@@ -185,7 +185,7 @@ app.post('/cadastrarNovoUsuario', function(req, res){
 });
 
 app.post('/loginDeUsuario', function(req, res){
-    console.log("[ CU Server] Body =", req.body);
+    console.log("[Server] Body =", req.body);
     var email = req.body.email_login;
     var senha = req.body.senha_login;
 
@@ -202,6 +202,22 @@ app.post('/loginDeUsuario', function(req, res){
         }
     });
 
+});
+
+app.all('/exitRoom', function(req, res){
+    // Parsear dados do request
+    var cookies = parseCookies(req);
+    var usuario = cookies['usuario'];
+    var roomData = cookies['roomData'].split("|");
+    var sala = roomData[1];
+    var authToken = roomData[2];
+    var jogo = roomData[0];
+
+    // Desautenticar usuário daquela mesa
+    M.sairDeMesa(usuario, jogo, sala);
+
+    // Enviar página padrão de jogos
+    res.sendFile(fetchFile("/htmls/jogos.html")); 
 });
 
 
