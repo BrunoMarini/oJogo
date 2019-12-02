@@ -88,7 +88,8 @@
             // wait for the DOM to be loaded 
             $(document).ready(function() { 
                 // bind 'myForm' and provide a simple callback function 
-                $('form[id=formCadastro]').ajaxForm((response) => { 
+                $('#formCadastro').ajaxForm((response) => { 
+                    console.log("received " + response);
                     var resp = JSON.parse(response);
                     var res = resp["sucesso"];
                     if (res) {
