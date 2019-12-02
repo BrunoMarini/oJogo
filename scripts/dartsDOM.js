@@ -7,7 +7,7 @@ window.addEventListener("load", function(){
     ctx.globalCompositeOperation = 'destination-over';
 
     var target = new Image();
-    target.src = 'target.png';
+    target.src = 'darts/target.png';
     var targetCoord = {
         width0 : canvas.width-100,
         widthF : 85,
@@ -23,7 +23,7 @@ window.addEventListener("load", function(){
     }
 
     var dart = new Image();
-    dart.src = "dardo.png";
+    dart.src = "darts/dardo.png";
     dart.colorP = "#00F0F0";
     
     var turn; //var acumuladora de acréscimo e decréscimo

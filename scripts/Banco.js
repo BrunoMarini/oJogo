@@ -42,14 +42,14 @@ class Banco {
                         if(res.insertedCount == 1){
                             console.log("Cadastrado com Sucesso!");
                         }else{
-                            console.log("Erro ao Cadastrar!");
+                            console.log("Erro ao Cadastrar (erro no mongodb!)");
                         }
                     });
 
                     db.close();
                     
                 }else{    
-                    console.log("Erro ao Cadastrar!");
+                    console.log("Erro ao Cadastrar (email existente!)");
                     db.close();
                 }
             });
@@ -64,6 +64,8 @@ class Banco {
         var res = await dbo.collection("Cadastros").findOne({email: e});
         
         db.close();
+
+        if (res == null) return false;
 
         if(res.senha != null){
             if(s == res.senha)
