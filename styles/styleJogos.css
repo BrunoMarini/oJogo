@@ -34,7 +34,8 @@ body{
 
 #jogos_t,
 .jogos_table,
-.jogos_saldo_table {
+.jogos_saldo_table,
+.jogos_saldo_user_functions {
     border-right: 5px;
     border-color: #9A0000;
 }
