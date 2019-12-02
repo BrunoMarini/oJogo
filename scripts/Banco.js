@@ -94,6 +94,21 @@ class Banco {
             return false;
     }
 
+    async reqNome(e){
+        
+        var db = await MongoClient.connect(mongourl, MONGO_CONFIG); //function(err, db) {
+        
+        var dbo = db.db("Clientes");
+        var res = await dbo.collection("Cadastros").findOne({email: e});
+        
+        db.close();
+
+        if(res != null)
+            return res.nome;
+        else
+            return false;
+    }
+
     async atualizarSaldo(e, v){
 
         var db = await MongoClient.connect(mongourl, MONGO_CONFIG); //function(err, db) {

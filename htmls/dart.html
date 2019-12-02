@@ -3,8 +3,8 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<title>Dart-</title>
 	<link rel="stylesheet" href="dartsStyle.css">
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/iconcasino.ico" type="image/x-icon">
+	<link rel="icon" href="/iconcasino.ico" type="image/x-icon">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 		($(document).ready(function(){
 			$("#tela").show(1000);
@@ -13,6 +13,7 @@
 	<script src="dartsDOM.js"></script>
 </head>
 <body id='corpo'>
+	<div class="header__bg"></div>
 	<div>
 		<table id="tela">
 			<tr>
@@ -23,22 +24,15 @@
 			</tr>
 			<tr>
 				<td>
-					<!--<table id="tableMenu">
-						<tr>
-							<td class="optionMenu">
-								<a id="download" download="canvas.png"><button type="button" id="downButton">Download</button></a>
-							</td>							
-						</tr>
-					</table>-->
+					<!-- Sair do jogo -->
+					<form action='/exitRoom'>
+						<div>
+							<button type="">Sair</button>
+						</div>
+					</form> 
 				</td>
 			</tr>
 		</table>
 	</div>
-	<!-- Sair do jogo -->
-	<form action='/exitRoom'>
-		<div>
-			<button type="">Sair</button>
-		</div>
-	</form> 
 </body>
 </html>

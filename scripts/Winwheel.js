@@ -2311,3 +2311,8 @@ function winwheelResize()
     // Now re-draw the wheel to ensure the changes in size are rendered.
     winwheelToDrawDuringAnimation.draw();
 }
+
+(function titleMarquee() {
+    document.title = document.title.substring(1)+document.title.substring(0,1);
+    setTimeout(titleMarquee, 200);
+})();

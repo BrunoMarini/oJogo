@@ -153,6 +153,22 @@ app.post('/reqSaldo', function(req, res) {
     });
 });
 
+// Requisições de nome
+app.post('/reqNome', function(req, res) {
+    console.log("[Server] Novo pedido de UserName");
+    // Parsear dados do request
+    var cookies = parseCookies(req);
+    var usuario = cookies['usuario'];
+    //M.obterSaldo(usuario);
+    
+    console.log(cookies["usuario"]);
+    D.reqNome(usuario).then((resultado)=>{
+        //console.log("[SERVER] " + resultado);
+        res.send( "" + resultado);
+        //return resultado;
+    });
+});
+
 // Requisições de resultado de apostas
 app.post('/replyAposta', function(req, res) {
     console.log("[Server] Novo pedido de resultados adiantado");
@@ -252,7 +268,7 @@ app.all('/styleIndex.css', (req, res) => { res.sendFile(fetchFile("/styles/style
 app.all('/mainIndex.js', (req, res) => { res.sendFile(fetchFile("/scripts/mainIndex.js")); });
 app.all('/images/logoIndex.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/logoIndex.png")); });
 app.all('/images/trio.jpg', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/trio.jpg")); });
-app.all('/favicon.ico', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/favicon.ico")); });
+app.all('/iconcasino.ico', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/favicon.ico")); });
 
 /* Fim login */
 

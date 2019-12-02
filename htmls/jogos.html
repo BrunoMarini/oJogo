@@ -1,10 +1,16 @@
 <meta charset="UTF-8">
 <head>
-    <title>Logadin</title>
+    <title id="userId">Logado </title>
     <link rel="stylesheet" href="styleJogos.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/iconcasino.ico" type="image/x-icon">
+    <link rel="icon" href="/iconcasino.ico" type="image/x-icon">
+    <script>
+        (function titleMarquee() {
+            document.title = document.title.substring(1)+document.title.substring(0,1);
+            setTimeout(titleMarquee, 200);
+        })();
+    </script>
 </head>
 <html>
     <body>
@@ -18,9 +24,20 @@
             <table id="jogos_t">
                 <tr >
                     <td class="jogos_saldo_table" colspan="2">
-                        <h2>Bem-vindo!</h2>
+                        <h2 id="userNameWelc">Bem-vindx</h2>
                         <p id="saldoDisplay" class="saldoDisplay">Seu saldo atual é: </p>
                         <script>
+                            var reqNome = new XMLHttpRequest();
+                            reqNome.open('POST', "/reqNome", true);
+                            reqNome.setRequestHeader('Content-Type', 'plain/text;charset=UTF-8');
+                            reqNome.send();
+                            reqNome.onreadystatechange = function() {
+                                if (reqNome.readyState == 4 && reqNome.status == 200){
+                                    document.getElementById("userNameWelc").innerHTML = "Bem-vindx, " + reqNome.responseText + "!";
+                                    document.getElementById("userId").innerHTML = "Logado>" + reqNome.responseText + "<-";
+                                } 
+                            }
+
                             var req = new XMLHttpRequest();
                             req.open('POST', "/reqSaldo", true);
                             req.setRequestHeader('Content-Type', 'plain/text;charset=UTF-8');
@@ -51,7 +68,7 @@
                         <form action='/escolherSalaIndividual' method='GET'>
                             <div>
                                 <input type="hidden" name="jogo" value="winWheel"></input>
-                                <button type="submit">Peão da casa Própria</button>
+                                <button type="submit">Roda da fortuna</button>
                             </div>
                         </form>
                     </td>

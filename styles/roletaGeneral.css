@@ -1,4 +1,10 @@
-@font-face { font-family: "casinoRoyale"; src: url("CasinoRoyale.ttf") format('truetype'); } 
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@font-face { font-family: "casinoRoyale"; src: url("CasinoRoyale.ttf") format('truetype'); }
+
+* {
+    font-family: 'Cinzel Decorative', cursive;
+}
 
 html { overflow-y: scroll; }
 body {
@@ -10,9 +16,9 @@ body {
     background: url(poker.jpg);
     /* overflow: hidden; */
     margin: 0;
-    font-family: "casinoRoyale";
     /* position: absolute;  */
 }
+
 
 .moneyContainer {
     border: 3px solid #cabc00;
@@ -28,7 +34,6 @@ body {
 .saldoDisplay {
     margin-top: 10px;
     margin-bottom: 20px;
-    font-family: 'Cinzel Decorative', cursive;
     font-size: 36px;
     color: #dacb00;
 }
@@ -68,7 +73,7 @@ body {
     /* content: "25"; */
     text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
     text-align: center;
-    font: bold 17px/37px Arial;
+    font: bold 17px/37px "Ubuntu";
     white-space: pre;
     width: 25px;
     height: 25px;
@@ -82,7 +87,7 @@ body {
     top: -5px;
     text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3), 1px 1px 0px rgba(255, 255, 255, 0.2);
     text-align: center;
-    font: bold 14px/34px Arial;
+    font: bold 14px/34px "Ubuntu";
     color: #FFF;
 }
 .currency_1 {
@@ -191,5 +196,75 @@ body {
     color: #cabc00;
     text-align: center;
     vertical-align: middle;
-    font-family: 'Cinzel Decorative', cursive;
+}
+
+button {
+    border-spacing: 10px;
+    font-family: "Ubuntu";
+    width: 130px;
+    height: 50px;
+    border: 5px solid rgb(0, 0, 0);
+    background-color: rgb(107, 188, 202);
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgba(aqua, 0);
+    animation: 0.25s ease-in-out 0s buttonAnimOut;
+    position: relative;
+}
+
+button:hover{
+    animation: 0.25s ease-in-out 0s buttonAnimIn;
+    border: 10px solid rgb(107, 188, 202);
+    background-image: linear-gradient(-90deg, rgb(227, 233, 236), rgb(0, 160, 209));
+    border-radius: 20px;
+}
+
+@keyframes buttonAnimIn {
+    0% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg, rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 10px;
+    }
+    20%{
+        background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    40%{
+        background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    60%{
+        background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    80%{
+        background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    100% {
+        border: 10px solid rgb(107, 188, 202);
+        background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 20px;
+    }
+}
+
+@keyframes buttonAnimOut {
+    0% {
+        border: 10px solid rgb(107, 188, 202);
+        background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 20px;
+    }
+    20%{
+        background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    40%{
+        background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    60%{
+        background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    80%{
+        background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    100% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 10px;
+    }
 }

@@ -5,28 +5,30 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+.header__bg {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  margin:0;
+  background-image: linear-gradient(#53ff87, #38756dad);
+  transform: skewY(-6deg);
+  transform-origin: top left;
+}
+
 #canv {
   border: 7px;
   border-style: solid;
-  border-bottom-color: rgb(99, 0, 0);
-  border-right-color: rgb(99, 0, 0);
-  border-top-color: rgb(153, 0, 0);
-  border-left-color: rgb(153, 0, 0);
+  border-bottom-color: rgb(0, 2, 99);
+  border-right-color: rgb(0, 2, 99);
+  border-top-color: rgb(0, 84, 153);
+  border-left-color: rgb(0, 84, 153);
   margin: 0px;
   padding: 0px;
-}
-
-button {
-  border-spacing: 10px;
-  width: 130px;
-  height: 50px;
-  border: 5px solid rgb(0, 0, 0);
-  background-color: rgb(254, 255, 210);
-  margin: 5px;
-  border-radius: 10px;
-  background-color: rgba(aqua, 0);
-  animation: 0.75s ease-in-out 0s buttonAnimOut;
-  position: relative;
 }
 
 div {
@@ -38,10 +40,10 @@ div {
 #tela {
   border: 7px;
   border-style: solid;
-  border-bottom-color: rgb(58, 0, 0);
-  border-right-color: rgb(58, 0, 0);
-  border-top-color: rgb(190, 0, 0);
-  border-left-color: rgb(190, 0, 0);
+  border-bottom-color: rgb(0, 1, 73);
+  border-right-color: rgb(0, 1, 73);
+  border-top-color: rgb(0, 68, 124);
+  border-left-color: rgb(0, 68, 124);
   margin: 0px;
   padding: 0px;
 }
@@ -57,67 +59,80 @@ div {
 body {
   align-self: center;
   margin: 0px;
-  background-image: linear-gradient(-90deg, rgb(254, 255, 210), rgb(209, 153, 0));
+  background-color: #56c28c;
 }
 
 input{
   margin: 5px;
 }
 
+button {
+  border-spacing: 10px;
+  font-family: "Ubuntu";
+  width: 130px;
+  height: 50px;
+  border: 5px solid rgb(0, 0, 0);
+  background-color: rgb(107, 188, 202);
+  margin: 5px;
+  border-radius: 10px;
+  background-color: rgba(aqua, 0);
+  animation: 0.25s ease-in-out 0s buttonAnimOut;
+  position: relative;
+}
+
 button:hover{
-  animation: 0.75s ease-in-out 0s buttonAnimIn;
-  border: 10px solid rgb(255, 229, 158);
-  background-image: linear-gradient(-90deg, rgb(254, 255, 210), rgb(209, 153, 0));
+  animation: 0.25s ease-in-out 0s buttonAnimIn;
+  border: 10px solid rgb(107, 188, 202);
+  background-image: linear-gradient(-90deg, rgb(227, 233, 236), rgb(0, 160, 209));
   border-radius: 20px;
 }
 
 @keyframes buttonAnimIn {
   0% {
-    border: 5px solid rgb(0, 0, 0);
-    background-image: linear-gradient(90deg, rgb(254, 255, 210), rgb(209, 153, 0));
-    border-radius: 10px;
+      border: 5px solid rgb(0, 0, 0);
+      background-image: linear-gradient(90deg, rgb(227, 233, 236), rgb(0, 160, 209));
+      border-radius: 10px;
   }
   20%{
-    background-image: linear-gradient(60deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   40%{
-    background-image: linear-gradient(30deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   60%{
-    background-image: linear-gradient(-30deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   80%{
-    background-image: linear-gradient(-60deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   100% {
-    border: 10px solid rgb(255, 229, 158);
-    background-image: linear-gradient(-90deg, rgb(254, 255, 210), rgb(209, 153, 0));
-    border-radius: 20px;
+      border: 10px solid rgb(107, 188, 202);
+      background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+      border-radius: 20px;
   }
 }
 
 @keyframes buttonAnimOut {
   0% {
-    border: 10px solid rgb(255, 229, 158);
-    background-image: linear-gradient(-90deg, rgb(254, 255, 210), rgb(209, 153, 0));
-    border-radius: 20px;
+      border: 10px solid rgb(107, 188, 202);
+      background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+      border-radius: 20px;
   }
   20%{
-    background-image: linear-gradient(-60deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   40%{
-    background-image: linear-gradient(-30deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   60%{
-    background-image: linear-gradient(30deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   80%{
-    background-image: linear-gradient(60deg, rgb(254, 255, 210), rgb(209, 153, 0));
+      background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
   }
   100% {
-    border: 5px solid rgb(0, 0, 0);
-    background-image: linear-gradient(90deg, rgb(254, 255, 210), rgb(209, 153, 0));
-    border-radius: 10px;
+      border: 5px solid rgb(0, 0, 0);
+      background-image: linear-gradient(90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+      border-radius: 10px;
   }
 }
-

@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
 body
 {
-    font-family: arial;
+    background-color: #56c28c;
 }
 
 /* Sets the background image for the wheel */
@@ -9,6 +16,91 @@ td.the_wheel
     background-image: url(wheel_back.png);
     background-position: center;
     background-repeat: none;
+}
+
+.header__bg {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    margin:0;
+    background-image: linear-gradient(#53ff87, #38756dad);
+    transform: skewY(-6deg);
+    transform-origin: top left;
+  }
+
+  button {
+    border-spacing: 10px;
+    width: 130px;
+    height: 50px;
+    border: 5px solid rgb(0, 0, 0);
+    background-color: rgb(107, 188, 202);
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgba(aqua, 0);
+    animation: 0.25s ease-in-out 0s buttonAnimOut;
+    position: relative;
+}
+
+button:hover{
+    animation: 0.25s ease-in-out 0s buttonAnimIn;
+    border: 10px solid rgb(107, 188, 202);
+    background-image: linear-gradient(-90deg, rgb(227, 233, 236), rgb(0, 160, 209));
+    border-radius: 20px;
+}
+
+@keyframes buttonAnimIn {
+    0% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg, rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 10px;
+    }
+    20%{
+        background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    40%{
+        background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    60%{
+        background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    80%{
+        background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    100% {
+        border: 10px solid rgb(107, 188, 202);
+        background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 20px;
+    }
+}
+
+@keyframes buttonAnimOut {
+    0% {
+        border: 10px solid rgb(107, 188, 202);
+        background-image: linear-gradient(-90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 20px;
+    }
+    20%{
+        background-image: linear-gradient(-60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    40%{
+        background-image: linear-gradient(-30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    60%{
+        background-image: linear-gradient(30deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    80%{
+        background-image: linear-gradient(60deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+    }
+    100% {
+        border: 5px solid rgb(0, 0, 0);
+        background-image: linear-gradient(90deg,  rgb(227, 233, 236), rgb(0, 160, 209));
+        border-radius: 10px;
+    }
 }
 
 /* Do some css reset on selected elements */
