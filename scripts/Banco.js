@@ -6,12 +6,12 @@ const fs = require('fs');
 const path = require('path');
 function fetchFile(filename) { return path.join(__dirname + filename); }
 
-var authdata = JSON.parse(fs.readFileSync(fetchFile("/mongo_auth.json")));
-
-if (process.env.url == undefined)
+if (process.env.url == undefined) {
+    var authdata = JSON.parse(fs.readFileSync(fetchFile("/mongo_auth.json")));
     const url = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
-else 
+} else {
     const url = process.env.url;
+}
 console.log("[Banco] MongoDB server @ " + url);
 
 const dbName = 'Clientes';
