@@ -6,13 +6,14 @@ const fs = require('fs');
 const path = require('path');
 function fetchFile(filename) { return path.join(__dirname + filename); }
 
-if (process.env.url == undefined) {
+let mongourl = "";
+if (process.env.mongourl == undefined) {
     var authdata = JSON.parse(fs.readFileSync(fetchFile("/mongo_auth.json")));
-    const url = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
+    mongourl = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
 } else {
-    const url = process.env.url;
+    mongourl = process.env.mongourl;
 }
-console.log("[Banco] MongoDB server @ " + url);
+console.log("[Banco] MongoDB server @ " + mongourl);
 
 const dbName = 'Clientes';
 const MONGO_CONFIG = {useUnifiedTopology: true, useNewUrlParser: true};
@@ -25,7 +26,7 @@ class Banco {
 
     inserir(n, e, p, s){
        
-        MongoClient.connect(url, MONGO_CONFIG, function(err, db) {
+        MongoClient.connect(mongourl, MONGO_CONFIG, function(err, db) {
             if (err) throw err;
 
             var dbo = db.db("Clientes");
@@ -57,7 +58,7 @@ class Banco {
 
     async logar(e, s){
         
-        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        var db = await MongoClient.connect(mongourl, MONGO_CONFIG); //function(err, db) {
         
         var dbo = db.db("Clientes");
         var res = await dbo.collection("Cadastros").findOne({email: e});
@@ -75,7 +76,7 @@ class Banco {
 
     async saldo(e){
         
-        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        var db = await MongoClient.connect(mongourl, MONGO_CONFIG); //function(err, db) {
         
         var dbo = db.db("Clientes");
         var res = await dbo.collection("Cadastros").findOne({email: e});
@@ -90,7 +91,7 @@ class Banco {
 
     async atualizarSaldo(e, v){
 
-        var db = await MongoClient.connect(url, MONGO_CONFIG); //function(err, db) {
+        var db = await MongoClient.connect(mongourl, MONGO_CONFIG); //function(err, db) {
         
         var dbo = db.db("Clientes");
         var res = await dbo.collection("Cadastros").findOne({email: e});
