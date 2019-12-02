@@ -37,10 +37,10 @@ class Banco {
         //if (err) throw err;          
 
         if(result == null){
-            var res = dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s});//, function(err, res){
+            var res = await dbo.collection("Cadastros").insertOne({nome: n, email: e, senha: p, saldo: s});//, function(err, res){
             //if(err) throw err;
             console.log("[Banco] Resultado cadastro =", res);
-            if(res["insertedCount"] == 1){
+            if(res.insertedCount == 1){
                 console.log("Cadastrado com Sucesso!");
                 db.close();
                 return {"sucesso": true};
