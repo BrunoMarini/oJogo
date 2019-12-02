@@ -68,6 +68,9 @@ app.get('/escolharSalaIndividual', function(req, res){
         case "winWheel":
             res.sendFile(fetchFile("/htmls/winWheel.html"));
             break;
+        case "darts":
+            res.sendFile(fetchFile("/htmls/dart.html"));
+            break;
         default:
             res.send("404");
     }
@@ -218,6 +221,13 @@ app.all('/roletaDisco.css', (req, res) => { res.sendFile(fetchFile("/styles/role
 app.all('/roletaTabela.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaTabela.css")); });
 app.all('/roletaGeneral.css', (req, res) => { res.sendFile(fetchFile("/styles/roletaGeneral.css")); });
 /* Fim Roleta */
+
+/* Inicio Darts */
+app.all('/dartsDOM.js', function(req, res){
+    res.sendFile(fetchFile("/scripts/dartsDOM.js"));
+});
+app.all('/dartsStyle.css', (req, res) => { res.sendFile(fetchFile("/styles/dartsStyle.css")); });
+/* Fim Darts */
 
 /* Inicio Manager */
 app.all('/Banco.js', function(req, res){
