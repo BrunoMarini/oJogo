@@ -1,19 +1,21 @@
 <meta charset="UTF-8">
 <html>
-    <body>
+    <head>
         <title>Sala</title>
-        <h>Escolhe a sala ai fi</h>
-        <form action='http://testino.us-3.evennode.com/entrarSala' method='GET'>
+        <link rel="stylesheet" href="styleJogos.css" type="text/css" />
+    </head>
+    <body>
+        <div id="panel">
+                <img id="imgLogo" src="logo.png" width="60px" height="60px">
+                <h1 style="float: left; margin-left: 30px;" id="escolheJogo">Escolha de sala</h1>
+        </div>
+        <div style="margin-top: 100px;">
+        <form action='http://localhost:8080/entrarSala' method='GET'>
             <div>
-                <b>sala</b><input type="text" name="sala" required></br>
+                <input type="text" name="sala"  placeholder="ex.: 0 (valor inteiro!)" required></br>
                 <button type="submit">Entrar</button>
             </div>
         </form>
-        <!-- Sair do jogo -->
-        <form action='http://testino.us-3.evennode.com/exitRoom'>
-            <div>
-                <button type="">Cancelar</button>
-            </div>
-        </form> 
+        </div>
     </body>
 </html>
