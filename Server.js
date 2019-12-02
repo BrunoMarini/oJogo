@@ -227,8 +227,8 @@ app.all('/dartsDOM.js', function(req, res){
     res.sendFile(fetchFile("/scripts/dartsDOM.js"));
 });
 app.all('/dartsStyle.css', (req, res) => { res.sendFile(fetchFile("/styles/dartsStyle.css")); });
-app.all('/darts/dardo.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/darts/dardo.jpg")); });
-app.all('/darts/target.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/darts/target.jpg")); });
+app.all('/darts/dardo.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/darts/dardo.png")); });
+app.all('/darts/target.png', (req, res) => { res.sendFile(fetchFile("/recursos/imagens/darts/target.png")); });
 /* Fim Darts */
 
 /* Inicio Manager */
