@@ -8,7 +8,11 @@ function fetchFile(filename) { return path.join(__dirname + filename); }
 
 var authdata = JSON.parse(fs.readFileSync(fetchFile("/mongo_auth.json")));
 
-const url = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
+if (process.env.url == undefined)
+    const url = authdata["protocol"] + "://" + authdata["user"] + ":" + authdata["pass"] + "@" + authdata["url"] + "/" + authdata["get"]; //"//'mongodb://localhost:27017';
+else 
+    const url = process.env.url;
+console.log("[Banco] MongoDB server @ " + url);
 
 const dbName = 'Clientes';
 const MONGO_CONFIG = {useUnifiedTopology: true, useNewUrlParser: true};
