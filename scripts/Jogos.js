@@ -109,32 +109,15 @@ class Roleta extends Jogo {
 exports.Roleta = Roleta;
 // =================================  END ROLETA  =================================
 
-// ================================= BEGIN BLACKJACK =================================
-class Blackjack extends Jogo {
+// ================================= BEGIN DARTS =================================
+class Darts extends Jogo {
     constructor(mgr) {
-        super("blackjack", mgr);
-        this._mãos = {};
-        this._baralho = new Cartas.Baralho();
-        for (var k in this._jogadores) this._mãos[this._jogadores[k]] = [];
-    }
-
-    puxarCarta() {
-        return this._baralho.removerCarta();
-    }
-
-    iniciarRodada() {
-        // Coletar apostas
-
-        // Dar duas cartas para cada (inclusive crupie)
-
-        // Checar blackjacks
-
-        // Para cada jogador, adicionar cartas enquanto quiser
-
-        // Puxar cartas para o crupie ate que soma > 16
+        super("darts", mgr);
     }
 }
-// =================================  END BLACKJACK  =================================
+
+exports.Darts = Darts;
+// =================================  END DARTS  =================================
 
 // ================================= BEGIN WIN WHEEL =================================
 class WinWheel extends Jogo {

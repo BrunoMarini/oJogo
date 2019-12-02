@@ -7,7 +7,8 @@ class Manager {
     constructor() {
         this._mesas = {
             "roleta": [new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this), new Jogos.Roleta(this)],
-			"winWheel": [new Jogos.WinWheel(this)]
+            "winWheel": [new Jogos.WinWheel(this)],
+            "darts": [new Jogos.Darts(this)]
         }
         this._jogadores = {}
         this._objetos = {}
