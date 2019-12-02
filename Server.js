@@ -55,7 +55,7 @@ app.get('/escolheSala', function(req, res) {
 });
 
 // Escolhar salas individuais
-app.get('/escolharSalaIndividual', function(req, res){
+app.get('/escolherSalaIndividual', function(req, res){
     var jogo = req.query.jogo;
 
     var cookies = parseCookies(req);
