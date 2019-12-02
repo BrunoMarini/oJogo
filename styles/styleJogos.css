@@ -47,6 +47,10 @@ body{
     border-bottom-style: solid;
 }
 
+.jogos_saldo_user_functions {
+    border-top-style: solid;
+}
+
 #jogos_t {
     border-style: solid;
 }
